@@ -1,13 +1,19 @@
 package com.gasappsolution;
 
-import com.gasappsolution.Solution.reynolds;
+import com.gasappsolution.Solution.markSolution;
+import com.gasappsolution.Solution.reynoldsSolution;
 import com.gasappsolution.Solution.steelDiameter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javax.swing.*;
+import java.io.IOException;
 import java.util.Locale;
 
 public class mainController {
@@ -67,7 +73,7 @@ public class mainController {
     @FXML
     public void btn2() {
 /*
- * не работает. Должна открывать страницу БГТУ с моим кубком по нажатию кнопки
+   не работает. Должна открывать страницу БГТУ с моим кубком по нажатию кнопки
 
         Hyperlink link = new Hyperlink();
         link.setText("http://tgv.bstu.ru/olimp_tgv_2016");
@@ -78,20 +84,14 @@ public class mainController {
         });*/
         }
 
-    @FXML
-    public void aboutProgram() {
-        pipeMaterial.setText("Сталь");
-        markSolution.n = 0.01;                        //сталь
+        @FXML
+        void handleButtonAction(ActionEvent event) throws IOException {
+            System.err.println("hey");
+
     }
-
-
-
-
-
 
     @FXML
     public void initialize() {
-
         //==== Первая вкладка
         setSredPressure1.setText("-");
         setSredPressure2.setText("-");
@@ -112,10 +112,6 @@ public class mainController {
         setRe2.setText("0");
         setdPaRaschLenght2.setText("0");
 
-
-
-
-
         btnSolution1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 try {
@@ -125,7 +121,7 @@ public class mainController {
                     double Density = Double.parseDouble(getDensity.getText());
 
                     //==== Удельные потери
-                    pressSolution pressure = new pressSolution();
+                    pressureSolution pressure = new pressureSolution();
                     double PaUd = pressure.getPaUd(dPa, Length);
                     setdPaUdel.setText(String.valueOf(String.format(Locale.US, "%.4f", PaUd)));
 
@@ -141,9 +137,9 @@ public class mainController {
                     getDiamGas2.setText(String.valueOf((int) Ds1));
 
                     //==== Рейнольдс
-                    reynolds reynolds = new reynolds();
+                    reynoldsSolution reynoldsSolution = new reynoldsSolution();
                     double Ds1a = Ds1 / 10;
-                    double Re1 = reynolds.getReynolds(Rashod1, Ds1a);
+                    double Re1 = reynoldsSolution.getReynolds(Rashod1, Ds1a);
                     setRe1.setText(String.valueOf(String.format(Locale.US, "%.2f", Re1)));
 
                     //==== Падение давления
@@ -174,7 +170,7 @@ public class mainController {
                     setSpeed2.setText(String.valueOf(String.format(Locale.US, "%.2f", V2)));
 
                     //==== Рейнольдс
-                    reynolds reynolds = new reynolds();
+                    reynoldsSolution reynolds = new reynoldsSolution();
                     double Ds2a = Ds2 / 10;
                     double Re2 = reynolds.getReynolds(Rashod2, Ds2a);
                     setRe2.setText(String.valueOf(String.format(Locale.US, "%.2f", Re2)));

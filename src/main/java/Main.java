@@ -8,12 +8,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("finalScene.fxml"));
-        primaryStage.setTitle("TGV-GAS Beta.170426");
+        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        primaryStage.setTitle("TGV-GAS Beta.020517");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
-        System.err.println("You must die!");
+        System.err.println("Hey, you must be better!");
     }
 
     public static void main(String[] args) {

@@ -1,7 +1,6 @@
-package com.gasappsolution;
+package com.gasappsolution.Solution;
 
-import com.gasappsolution.Solution.reynolds;
-import com.gasappsolution.Solution.steelDiameter;
+import com.gasappsolution.pressureSolution;
 
 public class markSolution {
 
@@ -14,8 +13,8 @@ public class markSolution {
     public final double Tn = 273.15;
     public double zr = 0.9981;
     public double Tr = 273.15;
-    static double n = 0.01;
-    static double Pr = 0.101325 + 0.001 * 5;
+    public static double n = 0.01;
+    public static double Pr = 0.101325 + 0.001 * 5;
 
     //==== Диаметр расчетный
     public double Dr (double Density, double Rashod1, double PaUd) {
@@ -31,10 +30,10 @@ public class markSolution {
     }
     //==== Падение давления
     public double PnPk (double Ds1, double Re1, double Rashod1, double Density, double Length) {
-        reynolds reynolds = new reynolds();
+        reynoldsSolution reynoldsSolution = new reynoldsSolution();
         Ds1 = Ds1/10;
-        double lambda1 = reynolds.getlambda(Ds1, Re1, n);
-        pressSolution pressure = new pressSolution();
+        double lambda1 = reynoldsSolution.getlambda(Ds1, Re1, n);
+        pressureSolution pressure = new pressureSolution();
         double PnPk = pressure.getPressureLost(lambda1, Rashod1, Density, Length, Ds1);
         return PnPk;
     }
