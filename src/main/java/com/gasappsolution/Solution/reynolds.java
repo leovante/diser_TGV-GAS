@@ -1,4 +1,4 @@
-package com.gasappsolution;
+package com.gasappsolution.Solution;
 import static java.lang.Math.log10;
 
 /**Здесь происходит расчет рейнольдса в зависимости от:
@@ -15,7 +15,7 @@ public class reynolds {
         return Re;
     }
 
-    double getlambda(double D, double Re, double n) {
+    public double getlambda(double D, double Re, double n) {
         double lambda = 0;
         if (Re < 2000) {
             lambda = 64 / Re;

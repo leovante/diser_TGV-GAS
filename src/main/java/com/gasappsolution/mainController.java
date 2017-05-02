@@ -1,5 +1,7 @@
 package com.gasappsolution;
 
+import com.gasappsolution.Solution.reynolds;
+import com.gasappsolution.Solution.steelDiameter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,7 +44,7 @@ public class mainController {
         pressureMenuButton.setText("Сеть низкого давления");
         getdPa.setText("180");
         pressOnSystem.setText("Давление в сети (даПа)");
-        firstMarkSolution.Pr = 0.101325 + 0.001 * 5;
+        markSolution.Pr = 0.101325 + 0.001 * 5;
     }
     @FXML
     void setMitem2() {
@@ -50,17 +52,17 @@ public class mainController {
         pressureMenuButton.setText("Сеть среднего и высокого давления");
         getdPa.setText("0.18");
         pressOnSystem.setText("Давление в сети (МПа)");
-        firstMarkSolution.Pr =0.101325 + 0.3;
+        markSolution.Pr =0.101325 + 0.3;
     }
     @FXML
     public void setPipe1() {
         pipeMaterial.setText("Сталь");
-        firstMarkSolution.n = 0.01;                        //сталь
+        markSolution.n = 0.01;                        //сталь
     }
     @FXML
     public void setPipe2() {
         pipeMaterial.setText("Полиэтилен");
-        firstMarkSolution.n = 0.0007;                      //полиэтилен
+        markSolution.n = 0.0007;                      //полиэтилен
     }
     @FXML
     public void btn2() {
@@ -79,7 +81,7 @@ public class mainController {
     @FXML
     public void aboutProgram() {
         pipeMaterial.setText("Сталь");
-        firstMarkSolution.n = 0.01;                        //сталь
+        markSolution.n = 0.01;                        //сталь
     }
 
 
@@ -123,12 +125,12 @@ public class mainController {
                     double Density = Double.parseDouble(getDensity.getText());
 
                     //==== Удельные потери
-                    action pressure = new action();
+                    pressSolution pressure = new pressSolution();
                     double PaUd = pressure.getPaUd(dPa, Length);
                     setdPaUdel.setText(String.valueOf(String.format(Locale.US, "%.4f", PaUd)));
 
                     //==== Диаметр расчетный
-                    firstMarkSolution sol = new firstMarkSolution();
+                    markSolution sol = new markSolution();
                     double Dr = sol.Dr(Density, Rashod1, PaUd);
                     setRDiamGas.setText(String.valueOf(String.format(Locale.US, "%.1f", Dr)));
 
@@ -167,7 +169,7 @@ public class mainController {
                     double Length = Integer.parseInt(getGasl.getText());
 
                     //==== Скорость
-                    firstMarkSolution sol = new firstMarkSolution();
+                    markSolution sol = new markSolution();
                     double V2 = sol.V1(Rashod2, Ds2);
                     setSpeed2.setText(String.valueOf(String.format(Locale.US, "%.2f", V2)));
 

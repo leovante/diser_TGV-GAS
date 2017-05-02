@@ -13,7 +13,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
-        System.err.println("Hello");
+        System.err.println("You must die!");
     }
 
     public static void main(String[] args) {

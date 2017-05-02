@@ -1,6 +1,9 @@
 package com.gasappsolution;
 
-public class firstMarkSolution {
+import com.gasappsolution.Solution.reynolds;
+import com.gasappsolution.Solution.steelDiameter;
+
+public class markSolution {
 
     public final double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
     public final int mconst = 2;        //коэффициент в СП 42.101.2003 таблица 7
@@ -31,7 +34,7 @@ public class firstMarkSolution {
         reynolds reynolds = new reynolds();
         Ds1 = Ds1/10;
         double lambda1 = reynolds.getlambda(Ds1, Re1, n);
-        action pressure = new action();
+        pressSolution pressure = new pressSolution();
         double PnPk = pressure.getPressureLost(lambda1, Rashod1, Density, Length, Ds1);
         return PnPk;
     }

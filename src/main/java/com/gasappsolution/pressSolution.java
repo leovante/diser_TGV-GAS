@@ -1,6 +1,6 @@
 package com.gasappsolution;
 
-public class action {
+public class pressSolution {
     /**
      * Здесь происходит расчет удельных потерь давления (низкого или высокого)
      * А так же расчет потерь давления
