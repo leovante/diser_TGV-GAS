@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="440.0"
-            xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gasappsolution.mainController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="440.0" stylesheets="@modena.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gasappsolution.mainController">
    <children>
       <MenuBar fx:id="MenuBar" layoutY="2.0" prefHeight="25.0" prefWidth="450.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
                <items>
-                <MenuItem mnemonicParsing="false" text="Настройки" />
+                <MenuItem mnemonicParsing="false" onAction="#handleButtonSetting" text="Настройки" />
+                  <MenuItem fx:id="btnExit" mnemonicParsing="false" onAction="#handleExitMenuButton" text="Выход" />
                </items></Menu>
-          <Menu mnemonicParsing="false" text="О программе">
+            <Menu mnemonicParsing="false" text="Правка">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Отменить" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleResetMenuButton" text="Сбросить" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleButtonAction" text="Авторы" />
+                  <MenuItem mnemonicParsing="false" text="Инструкция" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleButtonAbout" text="О программе                       " />
                </items></Menu>
         </menus>
       </MenuBar>
@@ -46,7 +66,7 @@
                         <Label layoutX="240.0" layoutY="70.0" prefHeight="17.0" prefWidth="163.0" text="Усредненное давление  газа," />
                         <Label layoutX="240.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="абсолютное в сети (МПа)" />
                         <TextField fx:id="getdPa" layoutX="50.0" layoutY="105.0" prefWidth="160.0" text="180" />
-                        <TextField fx:id="setSredPressure1" layoutX="240.0" layoutY="105.0" mouseTransparent="true" prefWidth="160.0" text="-">
+                        <TextField fx:id="setSredPressure1" depthTest="DISABLE" layoutX="240.0" layoutY="105.0" prefWidth="160.0" text="-">
                            <effect>
                               <Lighting diffuseConstant="1.95" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                  <bumpInput>
@@ -65,8 +85,8 @@
                          <Label layoutX="240.0" layoutY="160.0" prefHeight="17.0" prefWidth="155.0" text="Материал газопровода" />
                          <MenuButton fx:id="pipeMaterial" focusTraversable="false" layoutX="240.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Сталь">
                              <items>
-                                 <MenuItem mnemonicParsing="false" onAction="#setPipe1" text="Сталь" />
-                                 <MenuItem mnemonicParsing="false" onAction="#setPipe2" text="Полиэтилен" />
+                                 <MenuItem mnemonicParsing="false" onAction="#setPipeToSteel" text="Сталь" />
+                                 <MenuItem mnemonicParsing="false" onAction="#setPipeToPolyethylene" text="Полиэтилен" />
                              </items>
                          </MenuButton>
 
@@ -88,7 +108,7 @@
                                  </light>
                               </Lighting>
                            </effect></Button>
-                         <Button focusTraversable="false" layoutX="190.0" layoutY="305.0" mnemonicParsing="false" onAction="#btn2" prefWidth="245.0" text="БГТУ им. В.Г. Шухова. г. Белгород" />
+                         <Button focusTraversable="false" layoutX="190.0" layoutY="305.0" mnemonicParsing="false" prefWidth="245.0" text="БГТУ им. В.Г. Шухова. г. Белгород" />
 
                          <!--Нижняя половина программы ПЕРВАЯ ВКЛАДКА-->
                          <Label layoutX="30.0" layoutY="340.0" text="Результат расчета" />
@@ -146,9 +166,9 @@
                                  </light>
                               </Lighting>
                            </effect></TextField>
-                         <Label layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
+                         <Label fx:id="textPaUd" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
                          <Label layoutX="240.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
-                         <Label layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
+                         <Label fx:id="textDPaonLenght" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
                          <TextField fx:id="setdPaUdel" layoutX="50.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
                            <effect>
                               <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
@@ -180,7 +200,7 @@
             </content>
           </Tab>
 
-          <Tab text="Расчет скорости газа">
+          <Tab fx:id="tabTwo" text="Расчет скорости газа">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -194,7 +214,7 @@
                          <Separator layoutX="16.0" layoutY="285.0" prefHeight="0.0" prefWidth="420.0" />
                          <Label layoutX="50.0" layoutY="25.0" prefHeight="9.0" prefWidth="160.0" text="Усредненное давление газа," />
                          <Label layoutX="50.0" layoutY="40.0" prefHeight="17.0" prefWidth="160.0" text="абсолютное в сети (МПа)" />
-                         <TextField fx:id="setSredPressure2" layoutX="50.0" layoutY="60.0" mouseTransparent="true" prefWidth="160.0" text="-">
+                         <TextField fx:id="setSredPressure2" depthTest="DISABLE" layoutX="50.0" layoutY="60.0" prefWidth="160.0" text="-">
                              <effect>
                                  <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                      <bumpInput>
@@ -257,9 +277,9 @@
                                      </light>
                                  </Lighting>
                              </effect></TextField>
-                         <Label layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
+                         <Label fx:id="textPaUd2" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
                          <Label layoutX="240.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
-                         <Label layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
+                         <Label fx:id="textDPaonLenght2" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
                          <TextField fx:id="setdPaUde2" layoutX="50.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
                              <effect>
                                  <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">

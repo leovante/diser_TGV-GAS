@@ -1,13 +1,13 @@
-package com.gasappsolution.Solution;
+package com.gasappsolution;
 
-import com.gasappsolution.pressureSolution;
+import com.gasappsolution.solution.diameterSteel;
 
 public class markSolution {
 
-    public final double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
-    public final int mconst = 2;        //коэффициент в СП 42.101.2003 таблица 7
-    public final double Bconst = 0.022; //коэффициент в СП 42.101.2003 таблица 7
-    public final double Aconst = 626;   //коэффициент в СП 42.101.2003 таблица 6
+    public static double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
+    public static double mconst = 2;        //коэффициент в СП 42.101.2003 таблица 7
+    public static double Bconst = 0.022; //коэффициент в СП 42.101.2003 таблица 7
+    public static double Aconst = 626;   //коэффициент в СП 42.101.2003 таблица 6
     public final double Pn = 0.101325;
     public final double zn = 0.9981;
     public final double Tn = 273.15;
@@ -23,8 +23,8 @@ public class markSolution {
     }
     //==== Диаметр стандартный
     public double Ds1 (double Dr) {
-        steelDiameter Diameters = new steelDiameter();
-        double Dstandart = Diameters.getDiameters(Dr);
+        diameterSteel Diameters = new diameterSteel();
+        double Dstandart = Diameters.getDiam(Dr);
         double Ds1 = (double) Dstandart;
         return Ds1;
     }

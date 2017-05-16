@@ -7,12 +7,13 @@ public class pressureSolution {
      */
     public double getPaUd(double dPa, double Length){
         int x = mainController.x;
+
         double PaUd = 0;
         if (x == 1){
             PaUd = dPa * 10 / (Length * 1.1);
         }
         if (x == 2){
-            PaUd = dPa * 10*1000000 / (Length * 1.1);
+            PaUd = dPa * 10 / (Length * 1.1);
         }
         return PaUd;
     }
@@ -20,10 +21,10 @@ public class pressureSolution {
         int x = mainController.x;
         double PnPk = 0;
         if (x == 1){
-             PnPk = 626.1 * lambda * Rashod * Rashod * Density * Length / (Math.pow(Ds2, 5));
+             PnPk = 626.1 * lambda * Rashod * Rashod * Density * Length * 1.1 / (Math.pow(Ds2, 5));
         }
         if (x == 2){
-             PnPk = Math.sqrt(1.2687*0.0001 * lambda * Rashod * Rashod * Density * Length / (Math.pow(Ds2, 5)));
+             PnPk = Math.sqrt(1.2687*0.0001 * lambda * Rashod * Rashod * Density * Length * 1.1 / (Math.pow(Ds2, 5)));
         }
         return PnPk;
     }

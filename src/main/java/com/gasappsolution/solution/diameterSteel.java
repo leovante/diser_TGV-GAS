@@ -1,9 +1,9 @@
-package com.gasappsolution.Solution;
+package com.gasappsolution.solution;
 
 import java.util.ArrayList;
 
-public class steelDiameter {
-     public double getDiameters(double Dr) {
+public class diameterSteel {
+     public double getDiam(double Dr) {
         ArrayList<Integer> list_diameters = new ArrayList<Integer>();
         list_diameters.add(0, 6);
         list_diameters.add(1, 8);
