@@ -15,7 +15,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         Image ico = new Image("iconLogo.png"); primaryStage.getIcons().add(ico);
-//        setUserAgentStylesheet(STYLESHEET_MODENA);
+        setUserAgentStylesheet(STYLESHEET_MODENA);
     }
     public static void main(String[] args) {
         launch(args);

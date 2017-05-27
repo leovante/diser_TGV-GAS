@@ -29,5 +29,5 @@ hs_err_pid*
 .idea/inspectionProfiles/
 .idea/workspace.xml
 src/test/
-target/
-
+src/main/java/com/gasappsolution/resourse/
+artifact/
