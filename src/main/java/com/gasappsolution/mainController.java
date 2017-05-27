@@ -21,40 +21,65 @@ import java.util.Locale;
 
 public class mainController {
     //==== Первая вкладка
-    @FXML    Label pressOnSystem;
-    @FXML    Label textPaUd;
-    @FXML    Label textPaUd2;
-    @FXML    Label textDPaonLenght;
-    @FXML    Label textDPaonLenght2;
-    @FXML    MenuButton pressureMenuButton;
-    @FXML    MenuButton pipeMaterial;
-    @FXML    TextField setSredPressure1;
-    @FXML    TextField getdPa;
-    @FXML    TextField getRashod1;
-    @FXML    TextField getGasl;
-    @FXML    TextField getDensity;
-    @FXML    TextField setRDiamGas;
-    @FXML    TextField setSpeed1;
-    double V1;
-    @FXML    TextField setStdiam;
-    @FXML    TextField setRe1;
-    @FXML    TextField setdPaUdel;
-    @FXML    TextField setdPaRaschLenght1;
+    @FXML
+    private Label pressOnSystem;
+    @FXML
+    private Label textPaUd;
+    @FXML
+    private Label textPaUd2;
+    @FXML
+    private Label textDPaonLenght;
+    @FXML
+    private Label textDPaonLenght2;
+    @FXML
+    private MenuButton pressureMenuButton;
+    @FXML
+    private MenuButton pipeMaterial;
+    @FXML
+    private TextField setSredPressure1;
+    @FXML
+    private TextField getdPa;
+    @FXML
+    private TextField getRashod1;
+    @FXML
+    private TextField getGasl;
+    @FXML
+    private TextField getDensity;
+    @FXML
+    private TextField setRDiamGas;
+    @FXML
+    private TextField setSpeed1;
+    private double V1;
+    @FXML
+    private TextField setStdiam;
+    @FXML
+    private TextField setRe1;
+    @FXML
+    private TextField setdPaUdel;
+    @FXML
+    private TextField setdPaRaschLenght1;
     //==== Вторая вкладка
-    @FXML    TextField setSredPressure2;
-    @FXML    TextField getDiamGas2;
-    @FXML    TextField getRashod2;
-    @FXML    TextField setSpeed2;
-    double V2;
-    @FXML    TextField setRe2;
-    @FXML    TextField setdPaUde2;
-    @FXML    TextField setdPaRaschLenght2;
-    @FXML    Button btnOK;
+    @FXML
+    private TextField setSredPressure2;
+    @FXML
+    private TextField getDiamGas2;
+    @FXML
+    private TextField getRashod2;
+    @FXML
+    private TextField setSpeed2;
+    private double V2;
+    @FXML
+    private TextField setRe2;
+    @FXML
+    private TextField setdPaUde2;
+    @FXML
+    private TextField setdPaRaschLenght2;
+    @FXML
+    private Button btnOK;
 
-    private Stage stageAbout;
     static int x = 1;
 
-        @FXML
+    @FXML
     void setMitem1() {
         x = 1;
         pressureMenuButton.setText("Сеть низкого давления");
@@ -83,10 +108,9 @@ public class mainController {
         setSredPressure2.setText("0.325");
         markSolution.Pr =0.101325 + 0.3;
         double sPr = Double.parseDouble(setSredPressure1.getText());
-        double sP = 0.101325/(sPr*162*Math.PI*Math.PI);
-        markSolution.Aconst = sP;
+        markSolution.Aconst = 0.101325/(sPr*162*Math.PI*Math.PI);
     }
-    tubeSolution tube = new tubeSolution();
+    private tubeSolution tube = new tubeSolution();
     @FXML
     public void setPipeToSteel() {
         String type = "Сталь";
@@ -113,16 +137,16 @@ public class mainController {
     }
     @FXML
     void handleButtonSetting(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/setting.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Настройки");
-        stage.setScene(new Scene(root));
-        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/setting.fxml"));
+        Stage stageSetting = new Stage();
+        stageSetting.setTitle("Настройки");
+        stageSetting.setScene(new Scene(root));
+        stageSetting.show();
     }
     @FXML
     public void handleButtonAbout(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("aboutProgram.fxml"));
-        stageAbout = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/aboutProgram.fxml"));
+        Stage stageAbout = new Stage();
         stageAbout.setTitle("О программе");
         stageAbout.setScene(new Scene(root));
         Image ico = new Image("iconLogo.png"); stageAbout.getIcons().add(ico);
