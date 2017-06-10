@@ -94,6 +94,7 @@ public class mainController {
         textDPaonLenght.setText("длине газ-да (Па)");
         textDPaonLenght2.setText("длине газ-да (Па)");
     }
+
     @FXML
     void setMitem2() {
         x = 2;
@@ -106,11 +107,13 @@ public class mainController {
         textDPaonLenght2.setText("длине газ-да (МПа²)");
         setSredPressure1.setText("0.325");
         setSredPressure2.setText("0.325");
-        markSolution.Pr =0.101325 + 0.3;
+        markSolution.Pr = 0.101325 + 0.3;
         double sPr = Double.parseDouble(setSredPressure1.getText());
-        markSolution.Aconst = 0.101325/(sPr*162*Math.PI*Math.PI);
+        markSolution.Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
     }
+
     private tubeSolution tube = new tubeSolution();
+
     @FXML
     public void setPipeToSteel() {
         String type = "Сталь";
@@ -121,6 +124,7 @@ public class mainController {
         markSolution.Bconst = 0.022;
         tube.setType(type);
     }
+
     @FXML
     public void setPipeToPolyethylene() {
         String type = "Полиэтилен";
@@ -131,10 +135,12 @@ public class mainController {
         markSolution.Bconst = 0.0446;
         tube.setType(type);
     }
+
     @FXML
-    void handleExitMenuButton (ActionEvent event) throws IOException{
+    void handleExitMenuButton(ActionEvent event) throws IOException {
         Platform.exit();
     }
+
     @FXML
     void handleButtonSetting(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/setting.fxml"));
@@ -143,17 +149,20 @@ public class mainController {
         stageSetting.setScene(new Scene(root));
         stageSetting.show();
     }
+
     @FXML
     public void handleButtonAbout(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/aboutProgram.fxml"));
         Stage stageAbout = new Stage();
         stageAbout.setTitle("О программе");
         stageAbout.setScene(new Scene(root));
-        Image ico = new Image("iconLogo.png"); stageAbout.getIcons().add(ico);
+        Image ico = new Image("iconLogo.png");
+        stageAbout.getIcons().add(ico);
         stageAbout.show();
     }
+
     @FXML
-    void handleResetMenuButton(ActionEvent event) throws  IOException{
+    void handleResetMenuButton(ActionEvent event) throws IOException {
         setMitem1();
         setPipeToSteel();
 
@@ -177,11 +186,13 @@ public class mainController {
         setdPaRaschLenght2.setText(null);
         setdPaUde2.setText(null);
     }
+
     @FXML
-    void inquiryQuestionBtnOK(){
+    void inquiryQuestionBtnOK() {
         Stage stageAbout = (Stage) btnOK.getScene().getWindow();
         stageAbout.close();
     }
+
     @FXML
     void handleButtonSolution1(ActionEvent event) {
         try {
@@ -219,20 +230,22 @@ public class mainController {
             V1 = solution.V1(Rashod1, Ds1);
             setSpeed1.setText(String.valueOf(String.format(Locale.US, "%.2f", V1)));
 
-            if (x==1){
-                if(V1>7){
+            if (x == 1) {
+                if (V1 > 7) {
                     setSpeed1.setStyle("-fx-text-inner-color: red;");
-                }else{setSpeed1.setStyle("-fx-text-inner-color: black;");
+                } else {
+                    setSpeed1.setStyle("-fx-text-inner-color: black;");
                 }
             }
-            if (x==2){
-                if(V1>25){
+            if (x == 2) {
+                if (V1 > 25) {
                     setSpeed1.setStyle("-fx-text-inner-color: red;");
-                }else {setSpeed1.setStyle("-fx-text-inner-color: black;");
+                } else {
+                    setSpeed1.setStyle("-fx-text-inner-color: black;");
                 }
             }
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
                     "Проверь корректность введенных данных",
@@ -240,6 +253,7 @@ public class mainController {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
     @FXML
     void handleButtonSolution2(ActionEvent event) {
         try {
@@ -266,20 +280,22 @@ public class mainController {
             double PnPk2 = sol.PnPk(Ds2, Re2, Rashod2, Density, Length);
             setdPaRaschLenght2.setText(String.valueOf(String.format(Locale.US, "%.4f", PnPk2)));
 
-            if (x==1){
-                if(V2>7){
+            if (x == 1) {
+                if (V2 > 7) {
                     setSpeed2.setStyle("-fx-text-inner-color: red;");
-                }else {setSpeed2.setStyle("-fx-text-inner-color: black;");
+                } else {
+                    setSpeed2.setStyle("-fx-text-inner-color: black;");
                 }
             }
-            if (x==2){
-                if(V2>25){
+            if (x == 2) {
+                if (V2 > 25) {
                     setSpeed2.setStyle("-fx-text-inner-color: red;");
-                }else {setSpeed2.setStyle("-fx-text-inner-color: black;");
+                } else {
+                    setSpeed2.setStyle("-fx-text-inner-color: black;");
                 }
             }
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
                     "Проверь корректность введенных данных",
@@ -287,6 +303,7 @@ public class mainController {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
     @FXML
     public void initialize() {
     }
