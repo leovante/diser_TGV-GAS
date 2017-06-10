@@ -1,1 +1,1 @@
-![screenshot](https://github.com/leovante/java-assignments/blob/master/scr.PNG?raw=true)
+![screenshot](https://github.com/leovante/java-assignments/blob/master/scr.PNG)
