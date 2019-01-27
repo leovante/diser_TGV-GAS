@@ -10,9 +10,13 @@
         <module name="diserMavenJavaFX" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Diser" target="1.6" />
-      <module name="diserMavenJavaFX" target="1.6" />
+    <bytecodeTargetLevel target="10">
+      <module name="Diser" target="10" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Diser" options="" />
+    </option>
   </component>
 </project>
