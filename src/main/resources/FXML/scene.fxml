@@ -18,7 +18,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="440.0" stylesheets="@../modena.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gasappsolution.mainController">
    <children>
-      <MenuBar fx:id="MenuBar" layoutY="2.0" prefHeight="25.0" prefWidth="450.0">
+      <MenuBar fx:id="MenuBar" layoutY="2.0" prefHeight="25.0" prefWidth="440.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
                <items>
@@ -38,8 +38,34 @@
                </items></Menu>
         </menus>
       </MenuBar>
-      <TabPane layoutY="27.0" prefHeight="585.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="28.0" prefHeight="584.0" prefWidth="440.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
+            <Tab text="Параметры газа">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Концентрации, %" />
+                        <TextField layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="80.0" layoutY="87.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="80.0" layoutY="131.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="80.0" layoutY="168.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="45.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="87.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="131.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="168.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Label layoutX="14.0" layoutY="229.0" text="Параметры газа" />
+                        <TextField layoutX="80.0" layoutY="290.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="80.0" layoutY="332.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="80.0" layoutY="376.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="80.0" layoutY="413.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="290.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="332.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="376.0" prefHeight="25.0" prefWidth="102.0" />
+                        <TextField layoutX="243.0" layoutY="413.0" prefHeight="25.0" prefWidth="102.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
           <Tab text="Гидравлический расчет">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
