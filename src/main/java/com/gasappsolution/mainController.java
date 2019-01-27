@@ -79,6 +79,9 @@ public class mainController {
 
     static int x = 1;
 
+    public mainController() {
+    }
+
     @FXML
     void setMitem1() {
         x = 1;
