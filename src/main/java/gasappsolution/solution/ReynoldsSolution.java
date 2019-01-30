@@ -7,7 +7,7 @@ import static java.lang.Math.log10;
  * А также здесь рассчитывается лямбда в зависимости от:
  * диамтера, рейнольдса и шероховатости трубы
  */
-public class reynoldsSolution {
+public class ReynoldsSolution {
     double vv = 14.3 * 0.000001; //коэффициент кинематической вязкости
 
     public double getReynolds(double Rashod, double D) {

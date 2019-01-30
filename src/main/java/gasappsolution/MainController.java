@@ -1,6 +1,6 @@
 package gasappsolution;
 
-import gasappsolution.solution.reynoldsSolution;
+import gasappsolution.solution.ReynoldsSolution;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,17 +13,22 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import gasappsolution.solution.tubeSolution;
+import gasappsolution.solution.TubeSolution;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Locale;
 
-public class mainController {
+public class MainController {
+    static String mItem = "lowPress";
+    private double gasSpeed1;
+    private double gasSpeed2;
+    private TubeSolution tubeSolution = new TubeSolution();
+
     //==== Первая вкладка
     @FXML
-    private Label pressOnSystem;
+    private Label pressOnSystemLabel;
     @FXML
     private Label textPaUd;
     @FXML
@@ -49,8 +54,7 @@ public class mainController {
     @FXML
     private TextField setRDiamGas;
     @FXML
-    private TextField setSpeed1;
-    private double V1;
+    private TextField setSpeed1Field;
     @FXML
     private TextField setStdiam;
     @FXML
@@ -59,6 +63,7 @@ public class mainController {
     private TextField setdPaUdel;
     @FXML
     private TextField setdPaRaschLenght1;
+
     //==== Вторая вкладка
     @FXML
     private TextField setSredPressure2;
@@ -67,8 +72,7 @@ public class mainController {
     @FXML
     private TextField getRashod2;
     @FXML
-    private TextField setSpeed2;
-    private double V2;
+    private TextField setSpeed2Field;
     @FXML
     private TextField setRe2;
     @FXML
@@ -78,21 +82,26 @@ public class mainController {
     @FXML
     private Button btnOK;
 
-    static int x = 1;
 
-    public mainController() {
+
+    public MainController() {
     }
 
     @FXML
+    public void initialize() {
+    }
+
+
+    @FXML
     void setMitem1() {
-        x = 1;
+        mItem = "lowPress";
         pressureMenuButton.setText("Сеть низкого давления");
         getdPa.setText("180");
-        pressOnSystem.setText("давление в сети (даПа)");
+        pressOnSystemLabel.setText("давление в сети (даПа)");
         textPaUd.setText("Удельные потери (Па/м)");
         textPaUd2.setText("Удельные потери (Па/м)");
-        markSolution.Pr = 0.101325 + 0.001 * 5;
-        markSolution.Aconst = 626;
+        MarkSolution.Pr = 0.101325 + 0.001 * 5;
+        MarkSolution.Aconst = 626;
         setSredPressure1.setText("-");
         setSredPressure2.setText("-");
         textDPaonLenght.setText("длине газ-да (Па)");
@@ -101,43 +110,42 @@ public class mainController {
 
     @FXML
     void setMitem2() {
-        x = 2;
+        mItem = "hightPress";
         pressureMenuButton.setText("Сеть среднего и высокого давления");
         getdPa.setText("0.18");
-        pressOnSystem.setText("давление в сети (МПа)");
+        pressOnSystemLabel.setText("давление в сети (МПа)");
         textPaUd.setText("Удельные потери (МПа/м)");
         textPaUd2.setText("Удельные потери (МПа/м)");
         textDPaonLenght.setText("длине газ-да (МПа²)");
         textDPaonLenght2.setText("длине газ-да (МПа²)");
         setSredPressure1.setText("0.325");
         setSredPressure2.setText("0.325");
-        markSolution.Pr = 0.101325 + 0.3;
+        MarkSolution.Pr = 0.101325 + 0.3;
         double sPr = Double.parseDouble(setSredPressure1.getText());
-        markSolution.Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
+        MarkSolution.Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
     }
 
-    private tubeSolution tube = new tubeSolution();
 
     @FXML
     public void setPipeToSteel() {
         String type = "Сталь";
         pipeMaterial.setText(type);
-        markSolution.n = 0.01;
-        markSolution.m1const = 5;
-        markSolution.mconst = 2;
-        markSolution.Bconst = 0.022;
-        tube.setType(type);
+        MarkSolution.n = 0.01;
+        MarkSolution.m1const = 5;
+        MarkSolution.mconst = 2;
+        MarkSolution.Bconst = 0.022;
+        tubeSolution.setType(type);
     }
 
     @FXML
     public void setPipeToPolyethylene() {
         String type = "Полиэтилен";
         pipeMaterial.setText(type);
-        markSolution.n = 0.0007;
-        markSolution.m1const = 4.75;
-        markSolution.mconst = 1.75;
-        markSolution.Bconst = 0.0446;
-        tube.setType(type);
+        MarkSolution.n = 0.0007;
+        MarkSolution.m1const = 4.75;
+        MarkSolution.mconst = 1.75;
+        MarkSolution.Bconst = 0.0446;
+        tubeSolution.setType(type);
     }
 
     @FXML
@@ -177,7 +185,7 @@ public class mainController {
         setRDiamGas.setText(null);
         setStdiam.setText(null);
         setdPaUdel.setText(null);
-        setSpeed1.setText(null);
+        setSpeed1Field.setText(null);
         setRe1.setText(null);
         setdPaRaschLenght1.setText(null);
 
@@ -185,7 +193,7 @@ public class mainController {
         getDiamGas2.setText("0");
         getRashod2.setText("1144");
         getRashod2.setText("1144");
-        setSpeed2.setText(null);
+        setSpeed2Field.setText(null);
         setRe2.setText(null);
         setdPaRaschLenght2.setText(null);
         setdPaUde2.setText(null);
@@ -198,7 +206,7 @@ public class mainController {
     }
 
     @FXML
-    void handleButtonSolution1(ActionEvent event) {
+    void tabHyraulic(ActionEvent event) {
         try {
             double dPa = Double.parseDouble(getdPa.getText());
             double Length = Double.parseDouble(getGasl.getText());
@@ -206,22 +214,22 @@ public class mainController {
             double Density = Double.parseDouble(getDensity.getText());
 
             //==== Удельные потери
-            pressureSolution pressure = new pressureSolution();
+            PressureSolution pressure = new PressureSolution();
             double PaUd = pressure.getPaUd(dPa, Length);
             setdPaUdel.setText(String.valueOf(String.format(Locale.US, "%.4f", PaUd)));
 
             //==== Диаметр расчетный
-            markSolution solution = new markSolution();
+            MarkSolution solution = new MarkSolution();
             double Dr = solution.Dr(Density, Rashod1, PaUd);
             setRDiamGas.setText(String.valueOf(String.format(Locale.US, "%.1f", Dr)));
             //==== Диаметр стандартный
-            tubeSolution.Solution(Dr);
-            double Ds1 = tubeSolution.getDs();
+            TubeSolution.Solution(Dr);
+            double Ds1 = TubeSolution.getDs();
             setStdiam.setText(String.valueOf((int) Ds1));
             getDiamGas2.setText(String.valueOf((int) Ds1));
 
             //==== Рейнольдс
-            reynoldsSolution reynoldsSolution = new reynoldsSolution();
+            ReynoldsSolution reynoldsSolution = new ReynoldsSolution();
             double Ds1a = Ds1 / 10;
             double Re1 = reynoldsSolution.getReynolds(Rashod1, Ds1a);
             setRe1.setText(String.valueOf(String.format(Locale.US, "%.2f", Re1)));
@@ -231,21 +239,21 @@ public class mainController {
             setdPaRaschLenght1.setText(String.valueOf(String.format(Locale.US, "%.4f", PnPk1)));
 
             //==== Скорость
-            V1 = solution.V1(Rashod1, Ds1);
-            setSpeed1.setText(String.valueOf(String.format(Locale.US, "%.2f", V1)));
+            gasSpeed1 = solution.V1(Rashod1, Ds1);
+            setSpeed1Field.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed1)));
 
-            if (x == 1) {
-                if (V1 > 7) {
-                    setSpeed1.setStyle("-fx-text-inner-color: red;");
+            if (mItem.equals("lowPress")) {
+                if (gasSpeed1 > 7) {
+                    setSpeed1Field.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed1.setStyle("-fx-text-inner-color: black;");
+                    setSpeed1Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
-            if (x == 2) {
-                if (V1 > 25) {
-                    setSpeed1.setStyle("-fx-text-inner-color: red;");
+            if (mItem.equals("hightPress")) {
+                if (gasSpeed1 > 25) {
+                    setSpeed1Field.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed1.setStyle("-fx-text-inner-color: black;");
+                    setSpeed1Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
 
@@ -259,7 +267,7 @@ public class mainController {
     }
 
     @FXML
-    void handleButtonSolution2(ActionEvent event) {
+    void tabGasSpeed(ActionEvent event) {
         try {
             double Ds2 = Double.parseDouble(getDiamGas2.getText());
             double Rashod2 = Double.parseDouble(getRashod2.getText());
@@ -267,12 +275,12 @@ public class mainController {
             double Length = Double.parseDouble(getGasl.getText());
 
             //==== Скорость
-            markSolution sol = new markSolution();
-            V2 = sol.V1(Rashod2, Ds2);
-            setSpeed2.setText(String.valueOf(String.format(Locale.US, "%.2f", V2)));
+            MarkSolution sol = new MarkSolution();
+            gasSpeed2 = sol.V1(Rashod2, Ds2);
+            setSpeed2Field.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed2)));
 
             //==== Рейнольдс
-            reynoldsSolution reynolds = new reynoldsSolution();
+            ReynoldsSolution reynolds = new ReynoldsSolution();
             double Ds2a = Ds2 / 10;
             double Re2 = reynolds.getReynolds(Rashod2, Ds2a);
             setRe2.setText(String.valueOf(String.format(Locale.US, "%.2f", Re2)));
@@ -284,18 +292,18 @@ public class mainController {
             double PnPk2 = sol.PnPk(Ds2, Re2, Rashod2, Density, Length);
             setdPaRaschLenght2.setText(String.valueOf(String.format(Locale.US, "%.4f", PnPk2)));
 
-            if (x == 1) {
-                if (V2 > 7) {
-                    setSpeed2.setStyle("-fx-text-inner-color: red;");
+            if (mItem.equals("lowPress")) {
+                if (gasSpeed2 > 7) {
+                    setSpeed2Field.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed2.setStyle("-fx-text-inner-color: black;");
+                    setSpeed2Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
-            if (x == 2) {
-                if (V2 > 25) {
-                    setSpeed2.setStyle("-fx-text-inner-color: red;");
+            if (mItem.equals("hightPress")) {
+                if (gasSpeed2 > 25) {
+                    setSpeed2Field.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed2.setStyle("-fx-text-inner-color: black;");
+                    setSpeed2Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
 
@@ -306,9 +314,5 @@ public class mainController {
                     "Ошибка расчета",
                     JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    @FXML
-    public void initialize() {
     }
 }

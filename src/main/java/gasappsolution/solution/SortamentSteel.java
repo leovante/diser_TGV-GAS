@@ -1,6 +1,6 @@
 package gasappsolution.solution;
 
-public class sortamentSteel {
+public class SortamentSteel {
 
 //   public void getDiam() {
 //        ArrayList<Integer> list_diameters = new ArrayList<Integer>();

@@ -2,7 +2,7 @@ package gasappsolution.solution;
 
 import java.util.ArrayList;
 
-public class sortamentPe {
+public class SortamentPe {
 
      public void sortamentPe() {
         ArrayList<Integer> list_diameters = new ArrayList<Integer>();

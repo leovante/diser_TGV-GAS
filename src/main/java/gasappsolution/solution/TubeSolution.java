@@ -2,7 +2,7 @@ package gasappsolution.solution;
 
 import java.util.ArrayList;
 
-public class tubeSolution {
+public class TubeSolution {
     private static double Dr = 0;
     private static double Ds = 0;
     private static String type = "Сталь";
@@ -67,7 +67,7 @@ public class tubeSolution {
             } else {
                 Ds = listPolyethyleneDiameters.get(listPolyethyleneDiameters.size() - 1);
             }
-            tubeSolution.Ds = Ds;
+            TubeSolution.Ds = Ds;
         }
         if (type == "Сталь") {
             int i = 0;
@@ -80,7 +80,7 @@ public class tubeSolution {
             } else {
                 Ds = listSteelDiameters.get(listSteelDiameters.size() - 1);
             }
-            tubeSolution.Ds = Ds;
+            TubeSolution.Ds = Ds;
         }
     }
 

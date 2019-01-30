@@ -1,14 +1,12 @@
 package gasappsolution;
 
-import gasappsolution.mainController;
-
-public class pressureSolution {
+public class PressureSolution {
     /**
      * Здесь происходит расчет удельных потерь давления (низкого или высокого)
      * А так же расчет потерь давления
      */
     public double getPaUd(double dPa, double Length){
-        int x = mainController.x;
+        int x = MainController.x;
 
         double PaUd = 0;
         if (x == 1){
@@ -20,7 +18,7 @@ public class pressureSolution {
         return PaUd;
     }
     public double getPressureLost(double lambda, double Rashod, double Density, double Length, double Ds2){
-        int x = mainController.x;
+        int x = MainController.x;
         double PnPk = 0;
         if (x == 1){
              PnPk = 626.1 * lambda * Rashod * Rashod * Density * Length * 1.1 / (Math.pow(Ds2, 5));

@@ -1,9 +1,9 @@
 package gasappsolution;
 
-import gasappsolution.solution.diameterSteel;
-import gasappsolution.solution.reynoldsSolution;
+import gasappsolution.solution.DiameterSteel;
+import gasappsolution.solution.ReynoldsSolution;
 
-public class markSolution {
+public class MarkSolution {
 
     public static double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
     public static double mconst = 2;     //коэффициент в СП 42.101.2003 таблица 7
@@ -24,17 +24,17 @@ public class markSolution {
     }
     //==== Диаметр стандартный
     public double Ds1 (double Dr) {
-        diameterSteel Diameters = new diameterSteel();
+        DiameterSteel Diameters = new DiameterSteel();
         double Dstandart = Diameters.getDiam(Dr);
         double Ds1 = (double) Dstandart;
         return Ds1;
     }
     //==== Падение давления
     public double PnPk (double Ds1, double Re1, double Rashod1, double Density, double Length) {
-        reynoldsSolution reynoldsSolution = new reynoldsSolution();
+        ReynoldsSolution reynoldsSolution = new ReynoldsSolution();
         Ds1 = Ds1/10;
         double lambda1 = reynoldsSolution.getlambda(Ds1, Re1, n);
-        pressureSolution pressure = new pressureSolution();
+        PressureSolution pressure = new PressureSolution();
         double PnPk = pressure.getPressureLost(lambda1, Rashod1, Density, Length, Ds1);
         return PnPk;
     }

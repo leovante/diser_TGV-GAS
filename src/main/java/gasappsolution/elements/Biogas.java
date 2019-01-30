@@ -1,4 +1,6 @@
 package gasappsolution.elements;
 
-public class natureGas {
+public class Biogas {
+
+
 }

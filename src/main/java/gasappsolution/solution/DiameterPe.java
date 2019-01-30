@@ -2,12 +2,12 @@ package gasappsolution.solution;
 
 import java.util.ArrayList;
 
-public class diameterPe {
+public class DiameterPe {
    private double Dr = 0;
    private double Ds = 0;
 
 
-     public diameterPe() {
+     public DiameterPe() {
         ArrayList<Integer> list_diameters = new ArrayList<Integer>();
         list_diameters.add(0, 20);
         list_diameters.add(1, 25);
