@@ -1,6 +1,4 @@
-package com.gasappsolution.solution;
-
-import java.util.ArrayList;
+package gasappsolution.solution;
 
 public class sortamentSteel {
 

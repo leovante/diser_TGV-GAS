@@ -1,4 +1,4 @@
-package com.gasappsolution;
+package gasappsolution.solution;
 import static java.lang.Math.log10;
 
 /**Здесь происходит расчет рейнольдса в зависимости от:

@@ -1,11 +1,12 @@
-package com.gasappsolution;
+package gasappsolution;
 
-import com.gasappsolution.solution.diameterSteel;
+import gasappsolution.solution.diameterSteel;
+import gasappsolution.solution.reynoldsSolution;
 
 public class markSolution {
 
     public static double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
-    public static double mconst = 2;        //коэффициент в СП 42.101.2003 таблица 7
+    public static double mconst = 2;     //коэффициент в СП 42.101.2003 таблица 7
     public static double Bconst = 0.022; //коэффициент в СП 42.101.2003 таблица 7
     public static double Aconst = 626;   //коэффициент в СП 42.101.2003 таблица 6
     public final double Pn = 0.101325;

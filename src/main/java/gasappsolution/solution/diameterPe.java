@@ -1,4 +1,4 @@
-package com.gasappsolution.solution;
+package gasappsolution.solution;
 
 import java.util.ArrayList;
 

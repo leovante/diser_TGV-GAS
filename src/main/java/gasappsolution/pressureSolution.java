@@ -1,4 +1,6 @@
-package com.gasappsolution;
+package gasappsolution;
+
+import gasappsolution.mainController;
 
 public class pressureSolution {
     /**

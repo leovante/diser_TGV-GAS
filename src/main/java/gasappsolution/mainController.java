@@ -1,5 +1,6 @@
-package com.gasappsolution;
+package gasappsolution;
 
+import gasappsolution.solution.reynoldsSolution;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import com.gasappsolution.solution.tubeSolution;
+import gasappsolution.solution.tubeSolution;
 
 import javax.swing.*;
 import java.awt.*;
