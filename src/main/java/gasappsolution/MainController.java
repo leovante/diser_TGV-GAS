@@ -20,8 +20,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Locale;
 
-public class MainController {
-    static String mItem = "lowPress";
+public class MainController implements PressureType {
+
+    static String mItem = lowPressure;
     private double gasSpeed1;
     private double gasSpeed2;
     private TubeSolution tubeSolution = new TubeSolution();
@@ -82,8 +83,6 @@ public class MainController {
     @FXML
     private Button btnOK;
 
-
-
     public MainController() {
     }
 
@@ -91,10 +90,9 @@ public class MainController {
     public void initialize() {
     }
 
-
     @FXML
     void setMitem1() {
-        mItem = "lowPress";
+        mItem = lowPressure;
         pressureMenuButton.setText("Сеть низкого давления");
         getdPa.setText("180");
         pressOnSystemLabel.setText("давление в сети (даПа)");
@@ -110,7 +108,7 @@ public class MainController {
 
     @FXML
     void setMitem2() {
-        mItem = "hightPress";
+        mItem = hightPressure;
         pressureMenuButton.setText("Сеть среднего и высокого давления");
         getdPa.setText("0.18");
         pressOnSystemLabel.setText("давление в сети (МПа)");
@@ -124,7 +122,6 @@ public class MainController {
         double sPr = Double.parseDouble(setSredPressure1.getText());
         MarkSolution.Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
     }
-
 
     @FXML
     public void setPipeToSteel() {
@@ -174,7 +171,7 @@ public class MainController {
     }
 
     @FXML
-    void handleResetMenuButton(ActionEvent event) throws IOException {
+    void resetMenuButton(ActionEvent event) throws IOException {
         setMitem1();
         setPipeToSteel();
 
@@ -203,6 +200,11 @@ public class MainController {
     void inquiryQuestionBtnOK() {
         Stage stageAbout = (Stage) btnOK.getScene().getWindow();
         stageAbout.close();
+    }
+
+    @FXML
+    void tabGasType(ActionEvent event) {
+
     }
 
     @FXML
@@ -242,21 +244,20 @@ public class MainController {
             gasSpeed1 = solution.V1(Rashod1, Ds1);
             setSpeed1Field.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed1)));
 
-            if (mItem.equals("lowPress")) {
+            if (mItem.equals(lowPressure)) {
                 if (gasSpeed1 > 7) {
                     setSpeed1Field.setStyle("-fx-text-inner-color: red;");
                 } else {
                     setSpeed1Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
-            if (mItem.equals("hightPress")) {
+            if (mItem.equals(hightPressure)) {
                 if (gasSpeed1 > 25) {
                     setSpeed1Field.setStyle("-fx-text-inner-color: red;");
                 } else {
                     setSpeed1Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
-
         } catch (Exception ex) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
@@ -292,21 +293,20 @@ public class MainController {
             double PnPk2 = sol.PnPk(Ds2, Re2, Rashod2, Density, Length);
             setdPaRaschLenght2.setText(String.valueOf(String.format(Locale.US, "%.4f", PnPk2)));
 
-            if (mItem.equals("lowPress")) {
+            if (mItem.equals(lowPressure)) {
                 if (gasSpeed2 > 7) {
                     setSpeed2Field.setStyle("-fx-text-inner-color: red;");
                 } else {
                     setSpeed2Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
-            if (mItem.equals("hightPress")) {
+            if (mItem.equals(hightPressure)) {
                 if (gasSpeed2 > 25) {
                     setSpeed2Field.setStyle("-fx-text-inner-color: red;");
                 } else {
                     setSpeed2Field.setStyle("-fx-text-inner-color: black;");
                 }
             }
-
         } catch (Exception ex) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
