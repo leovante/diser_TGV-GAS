@@ -1,4 +1,12 @@
 package gasappsolution.gases;
 
-public class NatureGas {
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class NatureGas extends AbstractGas {
+    @Override
+    public void param(Object context) {
+        Map<String, Double> prop = new LinkedHashMap<String, Double>();
+        prop.put("", 0.0);
+    }
 }

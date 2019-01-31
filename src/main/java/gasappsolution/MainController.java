@@ -29,7 +29,7 @@ public class MainController implements PressureType {
 
     //==== Первая вкладка
     @FXML
-    private Label pressOnSystemLabel;
+    private Label pressOnSystem;
     @FXML
     private Label textPaUd;
     @FXML
@@ -55,7 +55,7 @@ public class MainController implements PressureType {
     @FXML
     private TextField setRDiamGas;
     @FXML
-    private TextField setSpeed1Field;
+    private TextField setSpeed1;
     @FXML
     private TextField setStdiam;
     @FXML
@@ -73,7 +73,7 @@ public class MainController implements PressureType {
     @FXML
     private TextField getRashod2;
     @FXML
-    private TextField setSpeed2Field;
+    private TextField setSpeed2;
     @FXML
     private TextField setRe2;
     @FXML
@@ -95,7 +95,7 @@ public class MainController implements PressureType {
         mItem = lowPressure;
         pressureMenuButton.setText("Сеть низкого давления");
         getdPa.setText("180");
-        pressOnSystemLabel.setText("давление в сети (даПа)");
+        pressOnSystem.setText("давление в сети (даПа)");
         textPaUd.setText("Удельные потери (Па/м)");
         textPaUd2.setText("Удельные потери (Па/м)");
         MarkSolution.Pr = 0.101325 + 0.001 * 5;
@@ -111,7 +111,7 @@ public class MainController implements PressureType {
         mItem = hightPressure;
         pressureMenuButton.setText("Сеть среднего и высокого давления");
         getdPa.setText("0.18");
-        pressOnSystemLabel.setText("давление в сети (МПа)");
+        pressOnSystem.setText("давление в сети (МПа)");
         textPaUd.setText("Удельные потери (МПа/м)");
         textPaUd2.setText("Удельные потери (МПа/м)");
         textDPaonLenght.setText("длине газ-да (МПа²)");
@@ -182,7 +182,7 @@ public class MainController implements PressureType {
         setRDiamGas.setText(null);
         setStdiam.setText(null);
         setdPaUdel.setText(null);
-        setSpeed1Field.setText(null);
+        setSpeed1.setText(null);
         setRe1.setText(null);
         setdPaRaschLenght1.setText(null);
 
@@ -190,7 +190,7 @@ public class MainController implements PressureType {
         getDiamGas2.setText("0");
         getRashod2.setText("1144");
         getRashod2.setText("1144");
-        setSpeed2Field.setText(null);
+        setSpeed2.setText(null);
         setRe2.setText(null);
         setdPaRaschLenght2.setText(null);
         setdPaUde2.setText(null);
@@ -208,7 +208,7 @@ public class MainController implements PressureType {
     }
 
     @FXML
-    void tabHyraulic(ActionEvent event) {
+    void handleButtonSolution1(ActionEvent event) {
         try {
             double dPa = Double.parseDouble(getdPa.getText());
             double Length = Double.parseDouble(getGasl.getText());
@@ -242,23 +242,24 @@ public class MainController implements PressureType {
 
             //==== Скорость
             gasSpeed1 = solution.V1(Rashod1, Ds1);
-            setSpeed1Field.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed1)));
+            setSpeed1.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed1)));
 
             if (mItem.equals(lowPressure)) {
                 if (gasSpeed1 > 7) {
-                    setSpeed1Field.setStyle("-fx-text-inner-color: red;");
+                    setSpeed1.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed1Field.setStyle("-fx-text-inner-color: black;");
+                    setSpeed1.setStyle("-fx-text-inner-color: black;");
                 }
             }
             if (mItem.equals(hightPressure)) {
                 if (gasSpeed1 > 25) {
-                    setSpeed1Field.setStyle("-fx-text-inner-color: red;");
+                    setSpeed1.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed1Field.setStyle("-fx-text-inner-color: black;");
+                    setSpeed1.setStyle("-fx-text-inner-color: black;");
                 }
             }
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
                     "Проверь корректность введенных данных",
@@ -268,7 +269,7 @@ public class MainController implements PressureType {
     }
 
     @FXML
-    void tabGasSpeed(ActionEvent event) {
+    void handleButtonSolution2(ActionEvent event) {
         try {
             double Ds2 = Double.parseDouble(getDiamGas2.getText());
             double Rashod2 = Double.parseDouble(getRashod2.getText());
@@ -278,8 +279,7 @@ public class MainController implements PressureType {
             //==== Скорость
             MarkSolution sol = new MarkSolution();
             gasSpeed2 = sol.V1(Rashod2, Ds2);
-            setSpeed2Field.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed2)));
-
+            setSpeed2.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed2)));
             //==== Рейнольдс
             ReynoldsSolution reynolds = new ReynoldsSolution();
             double Ds2a = Ds2 / 10;
@@ -295,16 +295,16 @@ public class MainController implements PressureType {
 
             if (mItem.equals(lowPressure)) {
                 if (gasSpeed2 > 7) {
-                    setSpeed2Field.setStyle("-fx-text-inner-color: red;");
+                    setSpeed2.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed2Field.setStyle("-fx-text-inner-color: black;");
+                    setSpeed2.setStyle("-fx-text-inner-color: black;");
                 }
             }
             if (mItem.equals(hightPressure)) {
                 if (gasSpeed2 > 25) {
-                    setSpeed2Field.setStyle("-fx-text-inner-color: red;");
+                    setSpeed2.setStyle("-fx-text-inner-color: red;");
                 } else {
-                    setSpeed2Field.setStyle("-fx-text-inner-color: black;");
+                    setSpeed2.setStyle("-fx-text-inner-color: black;");
                 }
             }
         } catch (Exception ex) {
