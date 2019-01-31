@@ -1,5 +1,8 @@
 package gasappsolution;
 
+import gasappsolution.gases.FactoryGas;
+import gasappsolution.gases.Gas;
+import gasappsolution.solution.GasParameters;
 import gasappsolution.solution.ReynoldsSolution;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -20,7 +23,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Locale;
 
-public class MainController implements PressureType {
+public class MainController implements PressureType, GasType {
+    private Gas gas;
+    private GasParameters gasParameters;
 
     static String mItem = lowPressure;
     private double gasSpeed1;
@@ -28,6 +33,32 @@ public class MainController implements PressureType {
     private TubeSolution tubeSolution = new TubeSolution();
 
     //==== Первая вкладка
+    @FXML
+    private TextField ch4;
+    @FXML
+    private TextField c2h6;
+    @FXML
+    private TextField c3h8;
+    @FXML
+    private TextField c4h10;
+    @FXML
+    private TextField c5h12;
+    @FXML
+    private TextField n2;
+    @FXML
+    private TextField co2;
+    @FXML
+    private TextField co;
+    @FXML
+    private TextField h2s;
+    @FXML
+    private TextField h2;
+    @FXML
+    private TextField h2o;
+    @FXML
+    private TextField o2;
+
+    //==== Вторая вкладка
     @FXML
     private Label pressOnSystem;
     @FXML
@@ -42,6 +73,8 @@ public class MainController implements PressureType {
     private MenuButton pressureMenuButton;
     @FXML
     private MenuButton pipeMaterial;
+    @FXML
+    private MenuButton gasTypeMenuBtn;
     @FXML
     private TextField setSredPressure1;
     @FXML
@@ -65,7 +98,7 @@ public class MainController implements PressureType {
     @FXML
     private TextField setdPaRaschLenght1;
 
-    //==== Вторая вкладка
+    //==== Третья вкладка
     @FXML
     private TextField setSredPressure2;
     @FXML
@@ -84,10 +117,33 @@ public class MainController implements PressureType {
     private Button btnOK;
 
     public MainController() {
+
     }
 
     @FXML
     public void initialize() {
+
+    }
+
+    @FXML
+    void natureGasBtn(){
+        gas = new FactoryGas().createBiogas();
+//        gas = new FactoryGas().getParam(natureGas);
+        gasTypeMenuBtn.setText("Природный газ");
+        gasParametersSolution(gas);
+    }
+
+    @FXML
+    void biogasBtn(){
+        gas = new FactoryGas().createNatureGas();
+//        gas = new FactoryGas().getParam(bioGas);
+        gasTypeMenuBtn.setText("Биогаз");
+        gasParametersSolution(gas);
+    }
+
+    void gasParametersSolution(Gas gas){
+        gasParameters = new GasParameters(gas).solution();
+        ch4.setText(String.valueOf(gasParameters.getCH4()));
     }
 
     @FXML
@@ -200,11 +256,6 @@ public class MainController implements PressureType {
     void inquiryQuestionBtnOK() {
         Stage stageAbout = (Stage) btnOK.getScene().getWindow();
         stageAbout.close();
-    }
-
-    @FXML
-    void tabGasType(ActionEvent event) {
-
     }
 
     @FXML
