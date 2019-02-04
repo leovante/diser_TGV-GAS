@@ -1,27 +1,25 @@
 package gasappsolution.gases;
 
-import gasappsolution.Components;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class NatureGas implements Gas, Components {
+public class NatureGas implements Gas {
 
     @Override
-    public Map param () {
-        Map<String, Double> comp = new LinkedHashMap<String, Double>();
-        comp.put(CH4, 4.4);
-        comp.put(C2H6, 4.4);
-        comp.put(C3H8, 4.4);
-        comp.put(C4H10, 4.4);
-        comp.put(C5H12, 4.4);
-        comp.put(N2, 4.4);
-        comp.put(CO2, 4.4);
-        comp.put(CO, 4.4);
-        comp.put(H2S, 4.4);
-        comp.put(H2, 4.4);
-        comp.put(H2O, 4.4);
-        comp.put(O2, 4.4);
+    public Map create () {
+        Map<GasComponents, Double> comp = new LinkedHashMap<>();
+        comp.put(GasComponents.CH4, 4.4);
+        comp.put(GasComponents.C2H6, 4.4);
+        comp.put(GasComponents.C3H8, 4.4);
+        comp.put(GasComponents.C4H10, 4.4);
+        comp.put(GasComponents.C5H12, 4.4);
+        comp.put(GasComponents.N2, 4.4);
+        comp.put(GasComponents.CO2, 4.4);
+        comp.put(GasComponents.CO, 4.4);
+        comp.put(GasComponents.H2S, 4.4);
+        comp.put(GasComponents.H2, 4.4);
+        comp.put(GasComponents.H2O, 4.4);
+        comp.put(GasComponents.O2, 4.4);
         return comp;
         }
 }

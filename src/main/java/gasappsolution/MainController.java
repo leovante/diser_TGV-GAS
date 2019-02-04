@@ -2,7 +2,7 @@ package gasappsolution;
 
 import gasappsolution.gases.FactoryGas;
 import gasappsolution.gases.Gas;
-import gasappsolution.solution.GasParameters;
+import gasappsolution.solution.GasParam;
 import gasappsolution.solution.ReynoldsSolution;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -22,10 +22,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Map;
 
-public class MainController implements PressureType, GasType {
+import static gasappsolution.gases.GasComponents.CH4;
+
+public class MainController implements PressureType {
     private Gas gas;
-    private GasParameters gasParameters;
+    private GasParam gasParam;
 
     static String mItem = lowPressure;
     private double gasSpeed1;
@@ -127,23 +130,33 @@ public class MainController implements PressureType, GasType {
 
     @FXML
     void natureGasBtn(){
-        gas = new FactoryGas().createBiogas();
-//        gas = new FactoryGas().getParam(natureGas);
+        gas = new FactoryGas().getGas(gasappsolution.gases.GasType.NatureGas);
         gasTypeMenuBtn.setText("Природный газ");
-        gasParametersSolution(gas);
+        gasParametersSolution(gas.create());
     }
 
     @FXML
     void biogasBtn(){
-        gas = new FactoryGas().createNatureGas();
-//        gas = new FactoryGas().getParam(bioGas);
+        gas = new FactoryGas().getGas(gasappsolution.gases.GasType.Biogas);
         gasTypeMenuBtn.setText("Биогаз");
-        gasParametersSolution(gas);
+        gasParametersSolution(gas.create());
     }
 
-    void gasParametersSolution(Gas gas){
-        gasParameters = new GasParameters(gas).solution();
-        ch4.setText(String.valueOf(gasParameters.getCH4()));
+    void gasParametersSolution(Map gas){
+        gasParam = new GasParam(gas);
+        System.out.println(gas);
+        ch4.setText(String.valueOf(gasParam.getCH4()));
+        c2h6.setText(String.valueOf(gasParam.getC2H6()));
+        c3h8.setText(String.valueOf(gasParam.getC3H8()));
+        c4h10.setText(String.valueOf(gasParam.getC4H10()));
+        c5h12.setText(String.valueOf(gasParam.getC5H12()));
+        n2.setText(String.valueOf(gasParam.getN2()));
+        co2.setText(String.valueOf(gasParam.getCO2()));
+        co.setText(String.valueOf(gasParam.getCO()));
+        h2s.setText(String.valueOf(gasParam.getH2S()));
+        h2.setText(String.valueOf(gasParam.getH2()));
+        h2o.setText(String.valueOf(gasParam.getH2O()));
+        o2.setText(String.valueOf(gasParam.getO2()));
     }
 
     @FXML
