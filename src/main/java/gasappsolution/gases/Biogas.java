@@ -3,25 +3,25 @@ package gasappsolution.gases;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static gasappsolution.gases.GasComponents.CH4;
+import static gasappsolution.gases.GasComponents.*;
 
 public class Biogas implements Gas {
 
     @Override
     public Map create () {
         Map<GasComponents, Double> comp = new LinkedHashMap<>();
-        comp.put(CH4, 3.3);
-        comp.put(GasComponents.C2H6, 3.3);
-        comp.put(GasComponents.C3H8, 3.3);
-        comp.put(GasComponents.C4H10, 3.3);
-        comp.put(GasComponents.C5H12, 3.3);
-        comp.put(GasComponents.N2, 3.3);
-        comp.put(GasComponents.CO2, 3.3);
-        comp.put(GasComponents.CO, 3.3);
-        comp.put(GasComponents.H2S, 3.3);
-        comp.put(GasComponents.H2, 3.3);
-        comp.put(GasComponents.H2O, 3.3);
-        comp.put(GasComponents.O2, 3.3);
+        comp.put(CH4, 63.0);
+        comp.put(C2H6, 0.0);
+        comp.put(C3H8, 0.0);
+        comp.put(C4H10, 0.0);
+        comp.put(C5H12, 0.0);
+        comp.put(N2, 0.0);
+        comp.put(CO2, 33.0);
+        comp.put(CO, 0.0);
+        comp.put(H2S, 2.0);
+        comp.put(H2, 1.0);
+        comp.put(H2O, 0.0);
+        comp.put(O2, 0.0);
         return comp;
     }
 }

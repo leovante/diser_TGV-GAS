@@ -1,10 +1,13 @@
 package gasappsolution.solution;
 
 import gasappsolution.gases.GasComponents;
+import gasappsolution.gases.MassaGases;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
 import java.util.Map;
+
 import static gasappsolution.gases.GasComponents.*;
 
 public class GasParam {
@@ -27,6 +30,23 @@ public class GasParam {
     private double Wobbe;
     private double dencityNormalConditions;
     private double capacity;
+
+    public double getGasMix() {
+        MassaGases mas = new MassaGases();
+        double i = CH4 * mas.massa().get(GasComponents.CH4) +
+                C2H6 * mas.massa().get(GasComponents.C2H6) +
+                C3H8 * mas.massa().get(GasComponents.C3H8) +
+                C4H10 * mas.massa().get(GasComponents.C4H10) +
+                C5H12 * mas.massa().get(GasComponents.C5H12) +
+                N2 * mas.massa().get(GasComponents.N2) +
+                CO2 * mas.massa().get(GasComponents.CO2) +
+                CO * mas.massa().get(GasComponents.CO) +
+                H2S * mas.massa().get(GasComponents.H2S) +
+                H2 * mas.massa().get(GasComponents.H2) +
+                H2O * mas.massa().get(GasComponents.H2O) +
+                O2 * mas.massa().get(GasComponents.O2);
+        return i;
+    }
 
     public GasParam(Map gas) {
         try {

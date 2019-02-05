@@ -2,6 +2,8 @@ package gasappsolution;
 
 import gasappsolution.gases.FactoryGas;
 import gasappsolution.gases.Gas;
+import gasappsolution.gases.GasComponents;
+import gasappsolution.gases.GasType;
 import gasappsolution.solution.GasParam;
 import gasappsolution.solution.ReynoldsSolution;
 import javafx.application.Platform;
@@ -60,6 +62,8 @@ public class MainController implements PressureType {
     private TextField h2o;
     @FXML
     private TextField o2;
+    @FXML
+    private TextField plotnost;
 
     //==== Вторая вкладка
     @FXML
@@ -129,22 +133,24 @@ public class MainController implements PressureType {
     }
 
     @FXML
-    void natureGasBtn(){
-        gas = new FactoryGas().getGas(gasappsolution.gases.GasType.NatureGas);
+    void natureGasBtn() {
+        gas = new FactoryGas().getGas(GasType.NatureGas);
         gasTypeMenuBtn.setText("Природный газ");
         gasParametersSolution(gas.create());
+        plotnost();
     }
 
     @FXML
-    void biogasBtn(){
-        gas = new FactoryGas().getGas(gasappsolution.gases.GasType.Biogas);
+    void biogasBtn() {
+        gas = new FactoryGas().getGas(GasType.Biogas);
         gasTypeMenuBtn.setText("Биогаз");
         gasParametersSolution(gas.create());
+        plotnost();
     }
 
-    void gasParametersSolution(Map gas){
+    void gasParametersSolution(Map gas) {
         gasParam = new GasParam(gas);
-        System.out.println(gas);
+//        ch4.setText(String.valueOf(gas.get(CH4)));
         ch4.setText(String.valueOf(gasParam.getCH4()));
         c2h6.setText(String.valueOf(gasParam.getC2H6()));
         c3h8.setText(String.valueOf(gasParam.getC3H8()));
@@ -159,6 +165,14 @@ public class MainController implements PressureType {
         o2.setText(String.valueOf(gasParam.getO2()));
     }
 
+
+    void plotnost() {
+        plotnost.setText(String.valueOf(
+                String.format(
+                        Locale.US, "%.4f", gasParam.getGasMix())));
+    }
+
+    /*тут старое*/
     @FXML
     void setMitem1() {
         mItem = lowPressure;
@@ -322,8 +336,7 @@ public class MainController implements PressureType {
                     setSpeed1.setStyle("-fx-text-inner-color: black;");
                 }
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
                     "Проверь корректность введенных данных",

@@ -54,7 +54,7 @@
                                 <TextField layoutX="81.0" layoutY="371.0" prefHeight="25.0" prefWidth="102.0" />
                                 <TextField layoutX="81.0" layoutY="408.0" prefHeight="25.0" prefWidth="102.0" />
                                 <TextField layoutX="283.0" layoutY="285.0" prefHeight="25.0" prefWidth="102.0" promptText="Вт" />
-                                <TextField layoutX="283.0" layoutY="327.0" prefHeight="25.0" prefWidth="102.0" promptText="кг/м³" />
+                                <TextField fx:id="plotnost" layoutX="283.0" layoutY="327.0" prefHeight="25.0" prefWidth="102.0" promptText="кг/м³" />
                                 <TextField layoutX="283.0" layoutY="371.0" prefHeight="25.0" prefWidth="102.0" />
                                 <TextField layoutX="283.0" layoutY="408.0" prefHeight="25.0" prefWidth="102.0" />
                                 <Label layoutX="55.0" layoutY="79.0" text="CH₄" />
