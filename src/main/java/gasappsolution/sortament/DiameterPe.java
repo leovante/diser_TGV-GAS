@@ -1,13 +1,12 @@
-package gasappsolution.solution;
+package gasappsolution.sortament;
 
 import java.util.ArrayList;
 
 public class DiameterPe {
-   private double Dr = 0;
-   private double Ds = 0;
+    private double Dr = 0;
+    private double Ds = 0;
 
-
-     public DiameterPe() {
+    public DiameterPe() {
         ArrayList<Integer> list_diameters = new ArrayList<Integer>();
         list_diameters.add(0, 20);
         list_diameters.add(1, 25);
@@ -34,23 +33,22 @@ public class DiameterPe {
 
         int i = 0;
         double Ds = list_diameters.get(0);
-        if (Dr<802) {
+        if (Dr < 802) {
             while (list_diameters.get(i) < Dr) {
                 Ds = list_diameters.get(i + 1);
                 i++;
             }
-        }
-        else{
-            Ds = list_diameters.get(list_diameters.size()-1);
+        } else {
+            Ds = list_diameters.get(list_diameters.size() - 1);
         }
         this.Ds = Ds;
     }
 
-    public double getDiam(){
-      return Ds;
+    public double getDiam() {
+        return Ds;
     }
 
-   public void setDiam(double Dr){
-      this.Dr = Dr;
-   }
+    public void setDiam(double Dr) {
+        this.Dr = Dr;
+    }
 }

@@ -1,4 +1,4 @@
-package gasappsolution.gases;
+package gasappsolution.paramPage;
 
 public class FactoryGas implements AbstractFactoryGas {
     @Override

@@ -1,4 +1,4 @@
-package gasappsolution.solution;
+package gasappsolution.hydraulicPage;
 import static java.lang.Math.log10;
 
 /**Здесь происходит расчет рейнольдса в зависимости от:
@@ -7,7 +7,7 @@ import static java.lang.Math.log10;
  * А также здесь рассчитывается лямбда в зависимости от:
  * диамтера, рейнольдса и шероховатости трубы
  */
-public class ReynoldsSolution {
+public class ReSolution {
     double vv = 14.3 * 0.000001; //коэффициент кинематической вязкости
 
     public double getReynolds(double Rashod, double D) {

@@ -1,4 +1,4 @@
-package gasappsolution.gases;
+package gasappsolution.paramPage;
 
 public enum GasType {
     Biogas, NatureGas

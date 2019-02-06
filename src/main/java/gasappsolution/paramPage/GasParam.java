@@ -1,14 +1,11 @@
-package gasappsolution.solution;
+package gasappsolution.paramPage;
 
-import gasappsolution.gases.GasComponents;
-import gasappsolution.gases.MassaGases;
+import gasappsolution.paramPage.GasComponents;
+import gasappsolution.paramPage.MassaGases;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Locale;
 import java.util.Map;
-
-import static gasappsolution.gases.GasComponents.*;
 
 public class GasParam {
     private double CH4;
@@ -33,18 +30,18 @@ public class GasParam {
 
     public double getGasMix() {
         MassaGases mas = new MassaGases();
-        double i = CH4 * mas.massa().get(GasComponents.CH4) +
-                C2H6 * mas.massa().get(GasComponents.C2H6) +
-                C3H8 * mas.massa().get(GasComponents.C3H8) +
-                C4H10 * mas.massa().get(GasComponents.C4H10) +
-                C5H12 * mas.massa().get(GasComponents.C5H12) +
-                N2 * mas.massa().get(GasComponents.N2) +
-                CO2 * mas.massa().get(GasComponents.CO2) +
-                CO * mas.massa().get(GasComponents.CO) +
-                H2S * mas.massa().get(GasComponents.H2S) +
-                H2 * mas.massa().get(GasComponents.H2) +
-                H2O * mas.massa().get(GasComponents.H2O) +
-                O2 * mas.massa().get(GasComponents.O2);
+        double i = CH4/100 * mas.massa().get(GasComponents.CH4) +
+                C2H6/100 * mas.massa().get(GasComponents.C2H6) +
+                C3H8/100 * mas.massa().get(GasComponents.C3H8) +
+                C4H10/100 * mas.massa().get(GasComponents.C4H10) +
+                C5H12/100 * mas.massa().get(GasComponents.C5H12) +
+                N2/100 * mas.massa().get(GasComponents.N2) +
+                CO2/100 * mas.massa().get(GasComponents.CO2) +
+                CO/100 * mas.massa().get(GasComponents.CO) +
+                H2S/100 * mas.massa().get(GasComponents.H2S) +
+                H2/100 * mas.massa().get(GasComponents.H2) +
+                H2O/100 * mas.massa().get(GasComponents.H2O) +
+                O2/100 * mas.massa().get(GasComponents.O2);
         return i;
     }
 

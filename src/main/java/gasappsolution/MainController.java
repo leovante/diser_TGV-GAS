@@ -1,11 +1,12 @@
 package gasappsolution;
 
-import gasappsolution.gases.FactoryGas;
-import gasappsolution.gases.Gas;
-import gasappsolution.gases.GasComponents;
-import gasappsolution.gases.GasType;
-import gasappsolution.solution.GasParam;
-import gasappsolution.solution.ReynoldsSolution;
+import gasappsolution.hydraulicPage.FactoryPressure;
+import gasappsolution.hydraulicPage.Pressure;
+import gasappsolution.hydraulicPage.PressureType;
+import gasappsolution.paramPage.FactoryGas;
+import gasappsolution.paramPage.Gas;
+import gasappsolution.paramPage.GasType;
+import gasappsolution.paramPage.GasParam;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import gasappsolution.solution.TubeSolution;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,16 +26,16 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 
-import static gasappsolution.gases.GasComponents.CH4;
-
-public class MainController implements PressureType {
+public class MainController {
     private Gas gas;
     private GasParam gasParam;
 
-    static String mItem = lowPressure;
+//    static String mItem = lowPressure;
     private double gasSpeed1;
     private double gasSpeed2;
-    private TubeSolution tubeSolution = new TubeSolution();
+//    private TubeSolution tubeSolution = new TubeSolution();
+
+    private Pressure pressure;
 
     //==== Первая вкладка
     @FXML
@@ -64,7 +64,6 @@ public class MainController implements PressureType {
     private TextField o2;
     @FXML
     private TextField plotnost;
-
     //==== Вторая вкладка
     @FXML
     private Label pressOnSystem;
@@ -104,7 +103,6 @@ public class MainController implements PressureType {
     private TextField setdPaUdel;
     @FXML
     private TextField setdPaRaschLenght1;
-
     //==== Третья вкладка
     @FXML
     private TextField setSredPressure2;
@@ -123,34 +121,22 @@ public class MainController implements PressureType {
     @FXML
     private Button btnOK;
 
-    public MainController() {
-
-    }
-
-    @FXML
-    public void initialize() {
-
-    }
-
     @FXML
     void natureGasBtn() {
         gas = new FactoryGas().getGas(GasType.NatureGas);
         gasTypeMenuBtn.setText("Природный газ");
-        gasParametersSolution(gas.create());
-        plotnost();
+        paramPageAction(gas.create());
     }
 
     @FXML
     void biogasBtn() {
         gas = new FactoryGas().getGas(GasType.Biogas);
         gasTypeMenuBtn.setText("Биогаз");
-        gasParametersSolution(gas.create());
-        plotnost();
+        paramPageAction(gas.create());
     }
 
-    void gasParametersSolution(Map gas) {
+    void paramPageAction(Map gas) {
         gasParam = new GasParam(gas);
-//        ch4.setText(String.valueOf(gas.get(CH4)));
         ch4.setText(String.valueOf(gasParam.getCH4()));
         c2h6.setText(String.valueOf(gasParam.getC2H6()));
         c3h8.setText(String.valueOf(gasParam.getC3H8()));
@@ -163,26 +149,28 @@ public class MainController implements PressureType {
         h2.setText(String.valueOf(gasParam.getH2()));
         h2o.setText(String.valueOf(gasParam.getH2O()));
         o2.setText(String.valueOf(gasParam.getO2()));
+        plotnost();
     }
-
 
     void plotnost() {
         plotnost.setText(String.valueOf(
                 String.format(
                         Locale.US, "%.4f", gasParam.getGasMix())));
     }
-
     /*тут старое*/
     @FXML
-    void setMitem1() {
-        mItem = lowPressure;
+    void setWebLowPressure() {
+        pressure = new FactoryPressure().getPressure(PressureType.low);
         pressureMenuButton.setText("Сеть низкого давления");
+        hydraulicPageAction(pressure.param());
+
+//        mItem = lowPressure;
         getdPa.setText("180");
         pressOnSystem.setText("давление в сети (даПа)");
         textPaUd.setText("Удельные потери (Па/м)");
         textPaUd2.setText("Удельные потери (Па/м)");
-        MarkSolution.Pr = 0.101325 + 0.001 * 5;
-        MarkSolution.Aconst = 626;
+        TapHydrSolution.Pr = 0.101325 + 0.001 * 5;
+        TapHydrSolution.Aconst = 626;
         setSredPressure1.setText("-");
         setSredPressure2.setText("-");
         textDPaonLenght.setText("длине газ-да (Па)");
@@ -190,8 +178,8 @@ public class MainController implements PressureType {
     }
 
     @FXML
-    void setMitem2() {
-        mItem = hightPressure;
+    void setWebHightPressure() {
+//        mItem = hightPressure;
         pressureMenuButton.setText("Сеть среднего и высокого давления");
         getdPa.setText("0.18");
         pressOnSystem.setText("давление в сети (МПа)");
@@ -201,19 +189,24 @@ public class MainController implements PressureType {
         textDPaonLenght2.setText("длине газ-да (МПа²)");
         setSredPressure1.setText("0.325");
         setSredPressure2.setText("0.325");
-        MarkSolution.Pr = 0.101325 + 0.3;
+        TapHydrSolution.Pr = 0.101325 + 0.3;
         double sPr = Double.parseDouble(setSredPressure1.getText());
-        MarkSolution.Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
+        TapHydrSolution.Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
     }
-
+    
+    void hydraulicPageAction(Object pressure){
+        pressure.
+                //найти тот пример с двумя билдерами и сделать похожим образом
+    }
+    
     @FXML
     public void setPipeToSteel() {
         String type = "Сталь";
         pipeMaterial.setText(type);
-        MarkSolution.n = 0.01;
-        MarkSolution.m1const = 5;
-        MarkSolution.mconst = 2;
-        MarkSolution.Bconst = 0.022;
+        TapHydrSolution.n = 0.01;
+        TapHydrSolution.m1const = 5;
+        TapHydrSolution.mconst = 2;
+        TapHydrSolution.Bconst = 0.022;
         tubeSolution.setType(type);
     }
 
@@ -221,10 +214,10 @@ public class MainController implements PressureType {
     public void setPipeToPolyethylene() {
         String type = "Полиэтилен";
         pipeMaterial.setText(type);
-        MarkSolution.n = 0.0007;
-        MarkSolution.m1const = 4.75;
-        MarkSolution.mconst = 1.75;
-        MarkSolution.Bconst = 0.0446;
+        TapHydrSolution.n = 0.0007;
+        TapHydrSolution.m1const = 4.75;
+        TapHydrSolution.mconst = 1.75;
+        TapHydrSolution.Bconst = 0.0446;
         tubeSolution.setType(type);
     }
 
@@ -255,7 +248,7 @@ public class MainController implements PressureType {
 
     @FXML
     void resetMenuButton(ActionEvent event) throws IOException {
-        setMitem1();
+        setWebLowPressure();
         setPipeToSteel();
 
         getdPa.setText("180");
@@ -277,6 +270,7 @@ public class MainController implements PressureType {
         setRe2.setText(null);
         setdPaRaschLenght2.setText(null);
         setdPaUde2.setText(null);
+        plotnost.setText(null);
     }
 
     @FXML
@@ -286,42 +280,36 @@ public class MainController implements PressureType {
     }
 
     @FXML
-    void handleButtonSolution1(ActionEvent event) {
+    void calculateBtn1() {
         try {
             double dPa = Double.parseDouble(getdPa.getText());
             double Length = Double.parseDouble(getGasl.getText());
             double Rashod1 = Double.parseDouble(getRashod1.getText());
             double Density = Double.parseDouble(getDensity.getText());
-
-            //==== Удельные потери
-            PressureSolution pressure = new PressureSolution();
+            // Удельные потери
+            PressSolution pressure = new PressSolution();
             double PaUd = pressure.getPaUd(dPa, Length);
             setdPaUdel.setText(String.valueOf(String.format(Locale.US, "%.4f", PaUd)));
-
-            //==== Диаметр расчетный
-            MarkSolution solution = new MarkSolution();
+            // Диаметр расчетный
+            TapHydrSolution solution = new TapHydrSolution();
             double Dr = solution.Dr(Density, Rashod1, PaUd);
             setRDiamGas.setText(String.valueOf(String.format(Locale.US, "%.1f", Dr)));
-            //==== Диаметр стандартный
+            // Диаметр стандартный
             TubeSolution.Solution(Dr);
             double Ds1 = TubeSolution.getDs();
             setStdiam.setText(String.valueOf((int) Ds1));
             getDiamGas2.setText(String.valueOf((int) Ds1));
-
-            //==== Рейнольдс
-            ReynoldsSolution reynoldsSolution = new ReynoldsSolution();
+            // Рейнольдс
+            ReSolution reSolution = new ReSolution();
             double Ds1a = Ds1 / 10;
-            double Re1 = reynoldsSolution.getReynolds(Rashod1, Ds1a);
+            double Re1 = reSolution.getReynolds(Rashod1, Ds1a);
             setRe1.setText(String.valueOf(String.format(Locale.US, "%.2f", Re1)));
-
-            //==== Падение давления
+            // Падение давления
             double PnPk1 = solution.PnPk(Ds1, Re1, Rashod1, Density, Length);
             setdPaRaschLenght1.setText(String.valueOf(String.format(Locale.US, "%.4f", PnPk1)));
-
-            //==== Скорость
+            // Скорость
             gasSpeed1 = solution.V1(Rashod1, Ds1);
             setSpeed1.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed1)));
-
             if (mItem.equals(lowPressure)) {
                 if (gasSpeed1 > 7) {
                     setSpeed1.setStyle("-fx-text-inner-color: red;");
@@ -346,30 +334,26 @@ public class MainController implements PressureType {
     }
 
     @FXML
-    void handleButtonSolution2(ActionEvent event) {
+    void calculateBtn2() {
         try {
             double Ds2 = Double.parseDouble(getDiamGas2.getText());
             double Rashod2 = Double.parseDouble(getRashod2.getText());
             double Density = Double.parseDouble(getDensity.getText());
             double Length = Double.parseDouble(getGasl.getText());
-
-            //==== Скорость
-            MarkSolution sol = new MarkSolution();
+            // Скорость
+            TapHydrSolution sol = new TapHydrSolution();
             gasSpeed2 = sol.V1(Rashod2, Ds2);
             setSpeed2.setText(String.valueOf(String.format(Locale.US, "%.2f", gasSpeed2)));
-            //==== Рейнольдс
-            ReynoldsSolution reynolds = new ReynoldsSolution();
+            // Рейнольдс
+            ReSolution reynolds = new ReSolution();
             double Ds2a = Ds2 / 10;
             double Re2 = reynolds.getReynolds(Rashod2, Ds2a);
             setRe2.setText(String.valueOf(String.format(Locale.US, "%.2f", Re2)));
-
-            //==== Удельные потери
+            // Удельные потери
             setdPaUde2.setText(String.valueOf(String.format(Locale.US, "%.4f", Double.parseDouble(setdPaUdel.getText()))));
-
-            //==== Падение давления
+            // Падение давления
             double PnPk2 = sol.PnPk(Ds2, Re2, Rashod2, Density, Length);
             setdPaRaschLenght2.setText(String.valueOf(String.format(Locale.US, "%.4f", PnPk2)));
-
             if (mItem.equals(lowPressure)) {
                 if (gasSpeed2 > 7) {
                     setSpeed2.setStyle("-fx-text-inner-color: red;");

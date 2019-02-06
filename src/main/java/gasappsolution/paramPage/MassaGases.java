@@ -1,9 +1,9 @@
-package gasappsolution.gases;
+package gasappsolution.paramPage;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static gasappsolution.gases.GasComponents.*;
+import static gasappsolution.paramPage.GasComponents.*;
 
 public class MassaGases {
     public Map<GasComponents, Double> massa() {

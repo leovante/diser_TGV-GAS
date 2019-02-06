@@ -1,4 +1,4 @@
-package gasappsolution.solution;
+package gasappsolution.sortament;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,6 @@ public class DiameterSteel {
         else{
             Ds = list_diameters.get(list_diameters.size()-1);
         }
-
         return Ds;
     }
 }

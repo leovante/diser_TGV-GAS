@@ -123,8 +123,8 @@
 
                                 <MenuButton fx:id="pressureMenuButton" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" prefWidth="350.0" text="Сеть низкого давления">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#setMitem1" text="Сеть низкого давления" />
-                                        <MenuItem mnemonicParsing="false" onAction="#setMitem2" text="Сеть среднего и высокого давления" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setWebLowPressure" text="Сеть низкого давления" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setWebHightPressure" text="Сеть среднего и высокого давления" />
                                     </items>
                                 </MenuButton>
 
@@ -165,7 +165,7 @@
                                 <Label layoutX="240.0" layoutY="225.0" prefHeight="17.0" prefWidth="165.0" text="стандартных условиях (кг/м³)" />
                                 <TextField fx:id="getDensity" layoutX="240.0" layoutY="245.0" prefWidth="160.0" text="0.72" />
 
-                                <Button layoutX="15.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleButtonSolution1" prefWidth="160.0" text="Рассчитать">
+                                <Button layoutX="15.0" layoutY="305.0" mnemonicParsing="false" onAction="#calculateBtn1" prefWidth="160.0" text="Рассчитать">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.1">
                                             <bumpInput>
@@ -303,7 +303,7 @@
                                 <Label layoutX="240.0" layoutY="90.0" prefHeight="17.0" prefWidth="160.0" text="(нм³/час)" />
                                 <TextField fx:id="getRashod2" layoutX="240.0" layoutY="110.0" prefWidth="160.0" text="1144" />
 
-                                <Button layoutX="15.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleButtonSolution2" prefWidth="160.0" text="Рассчитать">
+                                <Button layoutX="15.0" layoutY="305.0" mnemonicParsing="false" onAction="#calculateBtn2" prefWidth="160.0" text="Рассчитать">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
