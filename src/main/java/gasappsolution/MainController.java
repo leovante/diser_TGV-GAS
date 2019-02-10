@@ -3,7 +3,6 @@ package gasappsolution;
 import gasappsolution.hydraulicPage.Pressure.FactoryPressure;
 import gasappsolution.hydraulicPage.Pressure.Pressure;
 import gasappsolution.hydraulicPage.Pressure.PressureType;
-import gasappsolution.hydraulicPage.ReSolution;
 import gasappsolution.hydraulicPage.TapHydraulic;
 import gasappsolution.hydraulicPage.Tube.FactoryTube;
 import gasappsolution.hydraulicPage.Tube.Tube;
@@ -325,19 +324,10 @@ public class MainController {
 
             tapSpeed = new TapSpeed(gas, gasParam, pressure, tube, userData, tapHydraulic);
 
-//            gasSpeed2 = sol.V1(Rashod2, Ds2);
             setSpeed2.setText(util.toText(tapSpeed.getV2()));
             setRe2.setText(util.toText(tapSpeed.getRe()));
             setdPaUde2.setText(util.toText(tapSpeed.getPaUd()));
-            setdPaRaschLenght2.setText(util.toText(tapSpeed.get));
-
-            // Рейнольдс
-            ReSolution reynolds = new ReSolution();
-            double Ds2a = Ds2 / 10;
-            double Re2 = reynolds.getReynolds(Rashod2, Ds2a);
-            // Удельные потери
-            // Падение давления
-            double PnPk2 = sol.PnPk(Ds2, Re2, Rashod2, Density, Length);
+            setdPaRaschLenght2.setText(util.toText(tapSpeed.getPnPk()));
 
             if (pressure.equals(PressureType.low)) {
                 if (gasSpeed2 > 7) {
