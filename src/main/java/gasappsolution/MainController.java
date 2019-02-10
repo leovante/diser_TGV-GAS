@@ -325,13 +325,11 @@ public class MainController {
 
             tapSpeed = new TapSpeed(gas, gasParam, pressure, tube, userData, tapHydraulic);
 
-            gasSpeed2 = sol.V1(Rashod2, Ds2);
-            setSpeed2.setText(util.toText(gasSpeed2));
-            setRe2.setText(util.toText(Re2));
-            setdPaUde2.setText(util.toText(setdPaUdel.getText()));
-            setdPaRaschLenght2.setText(util.toText(PnPk2));
-
-
+//            gasSpeed2 = sol.V1(Rashod2, Ds2);
+            setSpeed2.setText(util.toText(tapSpeed.getV2()));
+            setRe2.setText(util.toText(tapSpeed.getRe()));
+            setdPaUde2.setText(util.toText(tapSpeed.getPaUd()));
+            setdPaRaschLenght2.setText(util.toText(tapSpeed.get));
 
             // Рейнольдс
             ReSolution reynolds = new ReSolution();
@@ -340,8 +338,6 @@ public class MainController {
             // Удельные потери
             // Падение давления
             double PnPk2 = sol.PnPk(Ds2, Re2, Rashod2, Density, Length);
-
-
 
             if (pressure.equals(PressureType.low)) {
                 if (gasSpeed2 > 7) {

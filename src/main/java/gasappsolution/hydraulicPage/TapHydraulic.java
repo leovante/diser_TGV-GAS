@@ -58,7 +58,7 @@ public class TapHydraulic {
 
     // Удельные потери давления
     public void PaUd() {
-        this.PaUd = pressure.getPaUd(userData.getdPa(), userData.getdPa());
+        this.PaUd = pressure.getPaUd(userData.getdPa(), userData.getLength());
     }
 
     // Диаметр расчетный

@@ -17,12 +17,24 @@ public class TapSpeed {
     private UserData userData;
     private TapHydraulic tapHydraulic;
 
+    final double Pn = 0.101325;
+    final double zn = 0.9981;
+    final double Tn = 273.15;
+
+    double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
+    double mconst = 2;     //коэффициент в СП 42.101.2003 таблица 7
+    double Bconst = 0.022; //коэффициент в СП 42.101.2003 таблица 7
+    double Aconst = 626;   //коэффициент в СП 42.101.2003 таблица 6
+    double zr = 0.9981;
+    double Tr = 273.15;
     double n = 0.01;
+    double Pr = 0.101325 + 0.001 * 5;
 
     double V2;
     double Ds;
     double Re;
     double PnPk;
+    double PaUd;
 
     public TapSpeed(Gas gas
             , GasParam gasParam
@@ -46,7 +58,6 @@ public class TapSpeed {
     public void Ds2() {
         Ds = userData.getDs2();
     }
-
 
     //число Рейнольдса
     public void getReynolds() {
@@ -90,5 +101,25 @@ public class TapSpeed {
                 , userData.getDensity()
                 , userData.getLength()
                 , Ds);
+    }
+
+    public double getV2() {
+        return V2;
+    }
+
+    public double getDs() {
+        return Ds;
+    }
+
+    public double getRe() {
+        return Re;
+    }
+
+    public double getPnPk() {
+        return PnPk;
+    }
+
+    public double getPaUd() {
+        return PaUd;
     }
 }
