@@ -9,31 +9,46 @@
 
 <AnchorPane prefHeight="214.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gasappsolution.MainController">
    <children>
-      <ImageView fitHeight="132.0" fitWidth="153.0" layoutX="34.0" layoutY="19.0">
+      <ImageView fitHeight="132.0" fitWidth="153.0" layoutX="26.0" layoutY="19.0">
          <image>
             <Image url="@../LOGO.png" />
          </image>
       </ImageView>
-      <Label layoutX="269.0" layoutY="41.0" text="Версия 0.8">
+      <Label layoutX="295.0" layoutY="174.0" text="Версия 0.190210">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="250.0" layoutY="66.0" text="Copyright © 2017">
+      <Label layoutX="34.0" layoutY="174.0" text="Copyright © 2019">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="90.0" text="Темников Д.О., Суслов Д.Ю.">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="253.0" layoutY="113.0" text="leovante@live.ru">
+      <Label layoutX="190.0" layoutY="80.0" text="Темников Д.О. temnikov@email.com">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
       <Button fx:id="btnOK" layoutX="185.0" layoutY="169.0" mnemonicParsing="false" onAction="#inquiryQuestionBtnOK" prefHeight="25.0" prefWidth="70.0" text="OK" />
+      <Label layoutX="190.0" layoutY="100.0" text="Суслов Д.Ю. suslov1687@mail.ru">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="120.0" text="Рамазанов Р.С. boss.rafshan@mail.ru">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="20.0" text="Россия, Белгород">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="40.0" text="БГТУ им.В.Г.Шухова. кафедра ТГВ">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
