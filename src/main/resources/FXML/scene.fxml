@@ -121,7 +121,7 @@
                                 <Separator layoutX="16.0" layoutY="285.0" prefHeight="0.0" prefWidth="420.0" />
                                 <Label layoutX="184.0" layoutY="22.0" text="Категория сети" />
 
-                                <MenuButton fx:id="pressureMenuButton" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" prefWidth="350.0" text="Сеть низкого давления">
+                                <MenuButton fx:id="pressureMenuButton" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" prefWidth="350.0" text="Выберите гатегорию">
                                     <items>
                                         <MenuItem mnemonicParsing="false" onAction="#setWebLowPressure" text="Сеть низкого давления" />
                                         <MenuItem mnemonicParsing="false" onAction="#setWebHightPressure" text="Сеть среднего и высокого давления" />
@@ -151,7 +151,7 @@
                                 <TextField fx:id="getRashod1" layoutX="50.0" layoutY="180.0" prefWidth="160.0" text="1144" />
 
                                 <Label layoutX="240.0" layoutY="160.0" prefHeight="17.0" prefWidth="155.0" text="Материал газопровода" />
-                                <MenuButton fx:id="pipeMaterial" focusTraversable="false" layoutX="240.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Сталь">
+                                <MenuButton fx:id="pipeMaterial" focusTraversable="false" layoutX="240.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Выберите материал">
                                     <items>
                                         <MenuItem mnemonicParsing="false" onAction="#setPipeToSteel" text="Сталь" />
                                         <MenuItem mnemonicParsing="false" onAction="#setPipeToPolyethylene" text="Полиэтилен" />
@@ -297,7 +297,7 @@
                                     </effect>
                                 </TextField>
                                 <Label layoutX="50.0" layoutY="90.0" prefHeight="9.0" prefWidth="160.0" text="Диаметр газопровода (мм)" />
-                                <TextField fx:id="getDiamGas2" layoutX="50.0" layoutY="110.0" prefWidth="160.0" text="0" />
+                                <TextField fx:id="setDiamGas2" layoutX="50.0" layoutY="110.0" prefWidth="160.0" text="0" />
                                 <Label layoutX="240.0" layoutY="60.0" prefHeight="17.0" prefWidth="160.0" text="Расход газа при" />
                                 <Label layoutX="240.0" layoutY="75.0" prefHeight="17.0" prefWidth="160.0" text="нормальных условиях" />
                                 <Label layoutX="240.0" layoutY="90.0" prefHeight="17.0" prefWidth="160.0" text="(нм³/час)" />

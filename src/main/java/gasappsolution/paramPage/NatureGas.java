@@ -4,6 +4,24 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class NatureGas implements Gas {
+    double vv = 14.3 * 0.000001; //коэффициент кинематической вязкости
+    double density;
+
+
+    @Override
+    public double getVv() {
+        return vv;
+    }
+
+    @Override
+    public double getDensity() {
+        return density;
+    }
+
+    @Override
+    public void setDensity(double density) {
+        this.density = density;
+    }
 
     @Override
     public Map create () {
