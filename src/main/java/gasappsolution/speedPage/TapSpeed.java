@@ -1,34 +1,25 @@
 package gasappsolution.speedPage;
 
-import gasappsolution.UserData;
+import gasappsolution.SnipConstants;
+import gasappsolution.utilities.UserData;
 import gasappsolution.hydraulicPage.Pressure.Pressure;
 import gasappsolution.hydraulicPage.TapHydraulic;
 import gasappsolution.hydraulicPage.Tube.Tube;
 import gasappsolution.paramPage.Gas;
 import gasappsolution.paramPage.GasParam;
 
+import javax.swing.*;
+import java.awt.*;
+
 import static java.lang.Math.log10;
 
-public class TapSpeed {
+public class TapSpeed implements SnipConstants {
     private Gas gas;
     private GasParam gasParam;
     private Pressure pressure;
     private Tube tube;
     private UserData userData;
     private TapHydraulic tapHydraulic;
-
-    final double Pn = 0.101325;
-    final double zn = 0.9981;
-    final double Tn = 273.15;
-
-    double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
-    double mconst = 2;     //коэффициент в СП 42.101.2003 таблица 7
-    double Bconst = 0.022; //коэффициент в СП 42.101.2003 таблица 7
-    double Aconst = 626;   //коэффициент в СП 42.101.2003 таблица 6
-    double zr = 0.9981;
-    double Tr = 273.15;
-    double n = 0.01;
-    double Pr = 0.101325 + 0.001 * 5;
 
     double V2;
     double Ds;
@@ -95,20 +86,26 @@ public class TapSpeed {
 
     // Падение давления
     public void PnPk() {
-        this.PnPk = pressure.getPressureLost(
-                getlambda()
-                , userData.getRashod1()
-                , userData.getDensity()
-                , userData.getLength()
-                , Ds);
+        try {
+            this.PnPk = pressure.getPressureLost(
+                    getlambda()
+                    , userData.getRashod1()
+                    , userData.getDensity()
+                    , userData.getLength()
+                    , Ds);
+        } catch (NullPointerException e) {
+            Component frame = null;
+            JOptionPane.showMessageDialog(frame,
+                    "Проверьте заполненность данных на предыдущей вкладке",
+                    "Ошибка расчета",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
     }
 
     public double getV2() {
         return V2;
-    }
-
-    public double getDs() {
-        return Ds;
     }
 
     public double getRe() {

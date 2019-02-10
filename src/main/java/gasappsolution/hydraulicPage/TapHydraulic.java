@@ -7,33 +7,24 @@
  */
 package gasappsolution.hydraulicPage;
 
-import gasappsolution.UserData;
+import gasappsolution.SnipConstants;
+import gasappsolution.utilities.UserData;
 import gasappsolution.hydraulicPage.Pressure.Pressure;
 import gasappsolution.hydraulicPage.Tube.Tube;
 import gasappsolution.paramPage.Gas;
 import gasappsolution.paramPage.GasParam;
 
+import javax.swing.*;
+import java.awt.*;
+
 import static java.lang.Math.log10;
 
-public class TapHydraulic {
+public class TapHydraulic implements SnipConstants {
     private Gas gas;
     private GasParam gasParam;
     private Pressure pressure;
     private Tube tube;
     private UserData userData;
-
-    final double Pn = 0.101325;
-    final double zn = 0.9981;
-    final double Tn = 273.15;
-
-    double m1const = 5;    //коэффициент в СП 42.101.2003 таблица 7
-    double mconst = 2;     //коэффициент в СП 42.101.2003 таблица 7
-    double Bconst = 0.022; //коэффициент в СП 42.101.2003 таблица 7
-    double Aconst = 626;   //коэффициент в СП 42.101.2003 таблица 6
-    double zr = 0.9981;
-    double Tr = 273.15;
-    double n = 0.01;
-    double Pr = 0.101325 + 0.001 * 5;
 
     double Re;
     double Dr;
@@ -58,17 +49,45 @@ public class TapHydraulic {
 
     // Удельные потери давления
     public void PaUd() {
-        this.PaUd = pressure.getPaUd(userData.getdPa(), userData.getLength());
+        try {
+            this.PaUd = pressure.getPaUd(userData.getdPa(), userData.getLength());
+        } catch (NullPointerException e) {
+            Component frame = null;
+            JOptionPane.showMessageDialog(frame,
+                    "Вы не выбрали категорию сети",
+                    "Ошибка расчета",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 
     // Диаметр расчетный
     public void Dr() {
-        this.Dr = Math.pow((Aconst * Bconst * gas.getDensity() * Math.pow(userData.getRashod1(), mconst)) / PaUd, 1 / m1const) * 10;
+        try {
+            this.Dr = Math.pow((Aconst * Bconst * gas.getDensity() * Math.pow(userData.getRashod1(), mconst)) / PaUd, 1 / m1const) * 10;
+        } catch (NullPointerException e) {
+            Component frame = null;
+            JOptionPane.showMessageDialog(frame,
+                    "Проверьте заполненность данных на предыдущей вкладке",
+                    "Ошибка расчета",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 
     // Диаметр стандартный
     public void Ds1() {
-        Ds = tube.getDs(Dr);
+        try {
+            Ds = tube.getDs(Dr);
+        } catch (NullPointerException e) {
+            Component frame = null;
+            JOptionPane.showMessageDialog(frame,
+                    "Вы не выбрали материал газопровода",
+                    "Ошибка расчета",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+
+        }
     }
 
     //число Рейнольдса

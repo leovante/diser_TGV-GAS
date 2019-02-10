@@ -1,4 +1,4 @@
-package gasappsolution;
+package gasappsolution.utilities;
 
 import java.util.Locale;
 

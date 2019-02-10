@@ -9,6 +9,7 @@ public class HightPressureLost implements Pressure {
     double Pr = 0.101325 + 0.3;
     double sPr = 0.325;
     double Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
+    double dPa = 0.18;
 
     @Override
     public HightPressureLost param() {
@@ -23,5 +24,15 @@ public class HightPressureLost implements Pressure {
     @Override
     public double getPressureLost(double lambda, double Rashod, double Density, double Length, double Ds2) {
         return Math.sqrt(1.2687 * 0.0001 * lambda * Rashod * Rashod * Density * Length * 1.1 / (Math.pow(Ds2, 5)));
+    }
+
+    @Override
+    public double getdPa() {
+        return dPa;
+    }
+
+    @Override
+    public double getsPr() {
+        return sPr;
     }
 }

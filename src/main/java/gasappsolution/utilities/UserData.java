@@ -1,4 +1,4 @@
-package gasappsolution;
+package gasappsolution.utilities;
 
 public class UserData {
     double dPa;

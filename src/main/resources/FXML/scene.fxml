@@ -22,20 +22,20 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Файл">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleButtonSetting" text="Настройки" />
-                        <MenuItem fx:id="btnExit" mnemonicParsing="false" onAction="#handleExitMenuButton" text="Выход" />
+                        <MenuItem mnemonicParsing="false" onAction="#settingBtn" text="Настройки" />
+                        <MenuItem fx:id="btnExit" mnemonicParsing="false" onAction="#exitBtn" text="Выход" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Правка">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Отменить" />
-                        <MenuItem mnemonicParsing="false" onAction="#resetMenuButton" text="Сбросить" />
+                        <MenuItem mnemonicParsing="false" onAction="#resetBtn" text="Сбросить" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Помощь">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Инструкция" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleButtonAbout" text="О программе                       " />
+                        <MenuItem mnemonicParsing="false" onAction="#aboutBtn" text="О программе                       " />
                     </items>
                 </Menu>
             </menus>
@@ -54,7 +54,7 @@
                                 <TextField layoutX="81.0" layoutY="371.0" prefHeight="25.0" prefWidth="102.0" />
                                 <TextField layoutX="81.0" layoutY="408.0" prefHeight="25.0" prefWidth="102.0" />
                                 <TextField layoutX="283.0" layoutY="285.0" prefHeight="25.0" prefWidth="102.0" promptText="Вт" />
-                                <TextField fx:id="plotnost" layoutX="283.0" layoutY="327.0" prefHeight="25.0" prefWidth="102.0" promptText="кг/м³" />
+                                <TextField fx:id="density" layoutX="283.0" layoutY="327.0" prefHeight="25.0" prefWidth="102.0" promptText="кг/м³" />
                                 <TextField layoutX="283.0" layoutY="371.0" prefHeight="25.0" prefWidth="102.0" />
                                 <TextField layoutX="283.0" layoutY="408.0" prefHeight="25.0" prefWidth="102.0" />
                                 <Label layoutX="55.0" layoutY="79.0" text="CH₄" />
@@ -121,15 +121,15 @@
                                 <Separator layoutX="16.0" layoutY="285.0" prefHeight="0.0" prefWidth="420.0" />
                                 <Label layoutX="184.0" layoutY="22.0" text="Категория сети" />
 
-                                <MenuButton fx:id="pressureMenuButton" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" prefWidth="350.0" text="Выберите гатегорию">
+                                <MenuButton fx:id="pressureMenuButton" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" prefWidth="350.0" text="Выберите категорию">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#setWebLowPressure" text="Сеть низкого давления" />
-                                        <MenuItem mnemonicParsing="false" onAction="#setWebHightPressure" text="Сеть среднего и высокого давления" />
+                                        <MenuItem mnemonicParsing="false" onAction="#lowPressureBtn" text="Сеть низкого давления" />
+                                        <MenuItem mnemonicParsing="false" onAction="#hightPressureBtn" text="Сеть среднего и высокого давления" />
                                     </items>
                                 </MenuButton>
 
                                 <Label layoutX="50.0" layoutY="70.0" prefHeight="9.0" prefWidth="113.0" text="Допустимые потери" />
-                                <Label fx:id="pressOnSystem" layoutX="50.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="давления в сети (даПа)" />
+                                <Label fx:id="pressOnSystemLabel" layoutX="50.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="давления в сети (даПа)" />
                                 <Label layoutX="240.0" layoutY="70.0" prefHeight="17.0" prefWidth="163.0" text="Усредненное давление  газа," />
                                 <Label layoutX="240.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="абсолютное в сети (МПа)" />
                                 <TextField fx:id="getdPa" layoutX="50.0" layoutY="105.0" prefWidth="160.0" text="180" />
@@ -153,8 +153,8 @@
                                 <Label layoutX="240.0" layoutY="160.0" prefHeight="17.0" prefWidth="155.0" text="Материал газопровода" />
                                 <MenuButton fx:id="pipeMaterial" focusTraversable="false" layoutX="240.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Выберите материал">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#setPipeToSteel" text="Сталь" />
-                                        <MenuItem mnemonicParsing="false" onAction="#setPipeToPolyethylene" text="Полиэтилен" />
+                                        <MenuItem mnemonicParsing="false" onAction="#steelPipeBtn" text="Сталь" />
+                                        <MenuItem mnemonicParsing="false" onAction="#polyethilenePipeBtn" text="Полиэтилен" />
                                     </items>
                                 </MenuButton>
 
@@ -239,9 +239,9 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label fx:id="textPaUd" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
+                                <Label fx:id="paUdLabel" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
                                 <Label layoutX="240.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
-                                <Label fx:id="textDPaonLenght" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
+                                <Label fx:id="dPaLenghtLabel" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
                                 <TextField fx:id="setdPaUdel" layoutX="50.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
@@ -351,9 +351,9 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label fx:id="textPaUd2" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
+                                <Label fx:id="paUd2Label" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
                                 <Label layoutX="240.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
-                                <Label fx:id="textDPaonLenght2" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
+                                <Label fx:id="dPaLenght2Label" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
                                 <TextField fx:id="setdPaUde2" layoutX="50.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">

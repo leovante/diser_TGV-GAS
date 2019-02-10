@@ -12,8 +12,9 @@ import gasappsolution.paramPage.Gas;
 import gasappsolution.paramPage.GasType;
 import gasappsolution.paramPage.GasParam;
 import gasappsolution.speedPage.TapSpeed;
+import gasappsolution.utilities.UserData;
+import gasappsolution.utilities.Utilities;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +29,6 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Map;
 
 public class MainController {
@@ -41,8 +41,6 @@ public class MainController {
     private GasParam gasParam;
     private Pressure pressure;
     private Tube tube;
-
-    private double gasSpeed2;
 
     // Первая вкладка
     @FXML
@@ -70,18 +68,18 @@ public class MainController {
     @FXML
     private TextField o2;
     @FXML
-    private TextField plotnost;
+    private TextField density;
     // Вторая вкладка
     @FXML
-    private Label pressOnSystem;
+    private Label pressOnSystemLabel;
     @FXML
-    private Label textPaUd;
+    private Label paUdLabel;
     @FXML
-    private Label textPaUd2;
+    private Label paUd2Label;
     @FXML
-    private Label textDPaonLenght;
+    private Label dPaLenghtLabel;
     @FXML
-    private Label textDPaonLenght2;
+    private Label dPaLenght2Label;
     @FXML
     private MenuButton pressureMenuButton;
     @FXML
@@ -131,18 +129,18 @@ public class MainController {
     @FXML
     void natureGasBtn() {
         gas = new FactoryGas().getGas(GasType.NatureGas);
+        paramPage(gas.create());
         gasTypeMenuBtn.setText("Природный газ");
-        paramPageAction(gas.create());
     }
 
     @FXML
     void biogasBtn() {
         gas = new FactoryGas().getGas(GasType.Biogas);
+        paramPage(gas.create());
         gasTypeMenuBtn.setText("Биогаз");
-        paramPageAction(gas.create());
     }
 
-    void paramPageAction(Map gas) {
+    void paramPage(Map gas) {
         gasParam = new GasParam(gas);
         ch4.setText(String.valueOf(gasParam.getCH4()));
         c2h6.setText(String.valueOf(gasParam.getC2H6()));
@@ -157,50 +155,50 @@ public class MainController {
         h2o.setText(String.valueOf(gasParam.getH2O()));
         o2.setText(String.valueOf(gasParam.getO2()));
         this.gas.setDensity(gasParam.getGasMix());
-        density();
+        calculateParamPage();
     }
 
-    void density() {
-        plotnost.setText(String.valueOf(
-                String.format(
-                        Locale.US, "%.4f", gas.getDensity())));
+    void calculateParamPage() {
+        density.setText(util.toText(gas.getDensity()));
     }
 
     /*тут старое*/
     @FXML
-    void setWebLowPressure() {
+    void lowPressureBtn() {
         this.pressure = new FactoryPressure()
-                .getPressure(PressureType.low)
-                .param();
+                .getPressure(PressureType.low);
+//                .param();
+        getdPa.setText(util.toText(pressure.getdPa()));
+        setSredPressure1.setText(util.toText(pressure.getsPr()));
+        setSredPressure2.setText(util.toText(pressure.getsPr()));
+
         pressureMenuButton.setText("Сеть низкого давления");
-        getdPa.setText("180");
-        pressOnSystem.setText("давление в сети (даПа)");
-        textPaUd.setText("Удельные потери (Па/м)");
-        textPaUd2.setText("Удельные потери (Па/м)");
-        setSredPressure1.setText("-");
-        setSredPressure2.setText("-");
-        textDPaonLenght.setText("длине газ-да (Па)");
-        textDPaonLenght2.setText("длине газ-да (Па)");
+        pressOnSystemLabel.setText("давление в сети (даПа)");
+        paUdLabel.setText("Удельные потери (Па/м)");
+        paUd2Label.setText("Удельные потери (Па/м)");
+        dPaLenghtLabel.setText("длине газ-да (Па)");
+        dPaLenght2Label.setText("длине газ-да (Па)");
     }
 
     @FXML
-    void setWebHightPressure() {
+    void hightPressureBtn() {
         this.pressure = new FactoryPressure()
-                .getPressure(PressureType.hight)
-                .param();
+                .getPressure(PressureType.hight);
+//                .param();
+        getdPa.setText(util.toText(pressure.getdPa()));
+        setSredPressure1.setText(util.toText(pressure.getsPr()));
+        setSredPressure2.setText(util.toText(pressure.getsPr()));
+
         pressureMenuButton.setText("Сеть среднего и высокого давления");
-        getdPa.setText("0.18");
-        pressOnSystem.setText("давление в сети (МПа)");
-        textPaUd.setText("Удельные потери (МПа/м)");
-        textPaUd2.setText("Удельные потери (МПа/м)");
-        textDPaonLenght.setText("длине газ-да (МПа²)");
-        textDPaonLenght2.setText("длине газ-да (МПа²)");
-        setSredPressure1.setText("0.325");
-        setSredPressure2.setText("0.325");
+        pressOnSystemLabel.setText("давление в сети (МПа)");
+        paUdLabel.setText("Удельные потери (МПа/м)");
+        paUd2Label.setText("Удельные потери (МПа/м)");
+        dPaLenghtLabel.setText("длине газ-да (МПа²)");
+        dPaLenght2Label.setText("длине газ-да (МПа²)");
     }
 
     @FXML
-    public void setPipeToSteel() {
+    public void steelPipeBtn() {
         pipeMaterial.setText("Сталь");
         this.tube = new FactoryTube()
                 .getTube(TubeType.Steel)
@@ -208,7 +206,7 @@ public class MainController {
     }
 
     @FXML
-    public void setPipeToPolyethylene() {
+    public void polyethilenePipeBtn() {
         pipeMaterial.setText("Полиэтилен");
         this.tube = new FactoryTube()
                 .getTube(TubeType.Steel)
@@ -216,12 +214,12 @@ public class MainController {
     }
 
     @FXML
-    void handleExitMenuButton(ActionEvent event) throws IOException {
+    void exitBtn() {
         Platform.exit();
     }
 
     @FXML
-    void handleButtonSetting(ActionEvent event) throws IOException {
+    void settingBtn() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/setting.fxml"));
         Stage stageSetting = new Stage();
         stageSetting.setTitle("Настройки");
@@ -230,7 +228,7 @@ public class MainController {
     }
 
     @FXML
-    public void handleButtonAbout(ActionEvent event) throws IOException {
+    public void aboutBtn() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/aboutProgram.fxml"));
         Stage stageAbout = new Stage();
         stageAbout.setTitle("О программе");
@@ -241,9 +239,9 @@ public class MainController {
     }
 
     @FXML
-    void resetMenuButton(ActionEvent event) throws IOException {
-        setWebLowPressure();
-        setPipeToSteel();
+    void resetBtn() {
+        lowPressureBtn();
+        steelPipeBtn();
 
         getdPa.setText("180");
         getRashod1.setText("1144");
@@ -264,7 +262,7 @@ public class MainController {
         setRe2.setText(null);
         setdPaRaschLenght2.setText(null);
         setdPaUde2.setText(null);
-        plotnost.setText(null);
+        density.setText(null);
     }
 
     @FXML
@@ -275,80 +273,64 @@ public class MainController {
 
     @FXML
     void calculateBtn1() {
-        try {
-            userData.setdPa(Double.parseDouble(getdPa.getText()));
-            userData.setLength(Double.parseDouble(getGasl.getText()));
-            userData.setRashod1(Double.parseDouble(getRashod1.getText()));
-            userData.setDensity(Double.parseDouble(getDensity.getText()));
+        userData.setdPa(Double.parseDouble(getdPa.getText()));
+        userData.setLength(Double.parseDouble(getGasl.getText()));
+        userData.setRashod1(Double.parseDouble(getRashod1.getText()));
+        userData.setDensity(Double.parseDouble(getDensity.getText()));
 
-            tapHydraulic = new TapHydraulic(gas, gasParam, pressure, tube, userData);
+        tapHydraulic = new TapHydraulic(gas, gasParam, pressure, tube, userData);
 
-            setdPaUdel.setText(util.toText(tapHydraulic.getPaUd()));
-            setRDiamGas.setText(util.toText(tapHydraulic.getDr()));
-            setStdiam.setText(util.toText(tapHydraulic.getDs()));
-            setDiamGas2.setText(util.toText(tapHydraulic.getDs()));
-            setRe1.setText(util.toText(tapHydraulic.getRe()));
-            setdPaRaschLenght1.setText(util.toText(tapHydraulic.getPnPk()));
-            setSpeed1.setText(util.toText(tapHydraulic.getV()));
+        setdPaUdel.setText(util.toText(tapHydraulic.getPaUd()));
+        setRDiamGas.setText(util.toText(tapHydraulic.getDr()));
+        setStdiam.setText(util.toText(tapHydraulic.getDs()));
+        setDiamGas2.setText(util.toText(tapHydraulic.getDs()));
+        setRe1.setText(util.toText(tapHydraulic.getRe()));
+        setdPaRaschLenght1.setText(util.toText(tapHydraulic.getPnPk()));
+        setSpeed1.setText(util.toText(tapHydraulic.getV()));
 
-            if (pressure.equals(PressureType.low)) {
-                if (tapHydraulic.getV() > 7) {
-                    setSpeed1.setStyle("-fx-text-inner-color: red;");
-                } else {
-                    setSpeed1.setStyle("-fx-text-inner-color: black;");
-                }
+        if (pressure.equals(PressureType.low)) {
+            if (tapHydraulic.getV() > 7) {
+                setSpeed1.setStyle("-fx-text-inner-color: red;");
+            } else {
+                setSpeed1.setStyle("-fx-text-inner-color: black;");
             }
-            if (pressure.equals(PressureType.hight)) {
-                if (tapHydraulic.getV() > 25) {
-                    setSpeed1.setStyle("-fx-text-inner-color: red;");
-                } else {
-                    setSpeed1.setStyle("-fx-text-inner-color: black;");
-                }
+        }
+        if (pressure.equals(PressureType.hight)) {
+            if (tapHydraulic.getV() > 25) {
+                setSpeed1.setStyle("-fx-text-inner-color: red;");
+            } else {
+                setSpeed1.setStyle("-fx-text-inner-color: black;");
             }
-        } catch (Exception ex) {
-            Component frame = null;
-            JOptionPane.showMessageDialog(frame,
-                    "Проверь корректность введенных данных",
-                    "Ошибка расчета",
-                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
     @FXML
     void calculateBtn2() {
-        try {
-            userData.setDs2(Double.parseDouble(setDiamGas2.getText()));
-            userData.setRashod2(Double.parseDouble(getRashod2.getText()));
-            userData.setDensity(Double.parseDouble(getDensity.getText()));
-            userData.setLength(Double.parseDouble(getGasl.getText()));
+        userData.setDs2(Double.parseDouble(setDiamGas2.getText()));
+        userData.setRashod2(Double.parseDouble(getRashod2.getText()));
+        userData.setDensity(Double.parseDouble(getDensity.getText()));
+        userData.setLength(Double.parseDouble(getGasl.getText()));
 
-            tapSpeed = new TapSpeed(gas, gasParam, pressure, tube, userData, tapHydraulic);
+        tapSpeed = new TapSpeed(gas, gasParam, pressure, tube, userData, tapHydraulic);
 
-            setSpeed2.setText(util.toText(tapSpeed.getV2()));
-            setRe2.setText(util.toText(tapSpeed.getRe()));
-            setdPaUde2.setText(util.toText(tapSpeed.getPaUd()));
-            setdPaRaschLenght2.setText(util.toText(tapSpeed.getPnPk()));
+        setSpeed2.setText(util.toText(tapSpeed.getV2()));
+        setRe2.setText(util.toText(tapSpeed.getRe()));
+        setdPaUde2.setText(util.toText(tapSpeed.getPaUd()));
+        setdPaRaschLenght2.setText(util.toText(tapSpeed.getPnPk()));
 
-            if (pressure.equals(PressureType.low)) {
-                if (gasSpeed2 > 7) {
-                    setSpeed2.setStyle("-fx-text-inner-color: red;");
-                } else {
-                    setSpeed2.setStyle("-fx-text-inner-color: black;");
-                }
+        if (pressure.equals(PressureType.low)) {
+            if (tapSpeed.getV2() > 7) {
+                setSpeed2.setStyle("-fx-text-inner-color: red;");
+            } else {
+                setSpeed2.setStyle("-fx-text-inner-color: black;");
             }
-            if (pressure.equals(PressureType.hight)) {
-                if (gasSpeed2 > 25) {
-                    setSpeed2.setStyle("-fx-text-inner-color: red;");
-                } else {
-                    setSpeed2.setStyle("-fx-text-inner-color: black;");
-                }
+        }
+        if (pressure.equals(PressureType.hight)) {
+            if (tapSpeed.getV2() > 25) {
+                setSpeed2.setStyle("-fx-text-inner-color: red;");
+            } else {
+                setSpeed2.setStyle("-fx-text-inner-color: black;");
             }
-        } catch (Exception ex) {
-            Component frame = null;
-            JOptionPane.showMessageDialog(frame,
-                    "Проверь корректность введенных данных",
-                    "Ошибка расчета",
-                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }
