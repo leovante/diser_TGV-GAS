@@ -30,4 +30,9 @@ public class PolyethyleneTube implements Tube {
     public double getBconst() {
         return 0;
     }
+
+    @Override
+    public double getDs(double Dr) {
+        return 0;
+    }
 }
