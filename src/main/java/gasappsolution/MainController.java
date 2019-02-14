@@ -260,29 +260,28 @@ public class MainController {
 
     void gasParamSummator() {
         this.gasSummator =
-                gasParam.getCH4()/100 +
-                        gasParam.getC2H6()/100 +
-                        gasParam.getC3H8()/100 +
-                        gasParam.getC4H10()/100 +
-                        gasParam.getC5H12()/100 +
-                        gasParam.getN2()/100 +
-                        gasParam.getCO2()/100 +
-                        gasParam.getCO()/100 +
-                        gasParam.getH2S()/100 +
-                        gasParam.getH2()/100 +
-                        gasParam.getH2O()/100 +
-                        gasParam.getO2()/100;
-
+                gasParam.getCH4() / 100 +
+                        gasParam.getC2H6() / 100 +
+                        gasParam.getC3H8() / 100 +
+                        gasParam.getC4H10() / 100 +
+                        gasParam.getC5H12() / 100 +
+                        gasParam.getN2() / 100 +
+                        gasParam.getCO2() / 100 +
+                        gasParam.getCO() / 100 +
+                        gasParam.getH2S() / 100 +
+                        gasParam.getH2() / 100 +
+                        gasParam.getH2O() / 100 +
+                        gasParam.getO2() / 100;
         if (this.gasSummator > 1) {
             other.setStyle("-fx-text-inner-color: red;");
             gasParam.setOther(1 - gasSummator);
-            other.setText(String.valueOf(gasParam.getOther()));
-            System.out.println(">1; " + (1 - gasSummator));
+            other.setText(String.valueOf(gasParam.getOther() * 100));
+            System.out.println(">1; " + (gasParam.getOther() * 100));
         } else if (this.gasSummator < 1) {
             other.setStyle("-fx-text-inner-color: black;");
             gasParam.setOther(1 - gasSummator);
-            other.setText(String.valueOf(1 - this.gasSummator));
-            System.out.println("<1; " + (1 - gasSummator));
+            other.setText(String.valueOf(gasParam.getOther() * 100));
+            System.out.println("<1; " + (gasParam.getOther() * 100));
         } else if (this.gasSummator == 1) {
             other.setStyle("-fx-text-inner-color: black;");
             gasParam.setOther(1 - gasSummator);
@@ -299,8 +298,8 @@ public class MainController {
             h2.setText(String.valueOf(gasParam.getH2()));
             h2o.setText(String.valueOf(gasParam.getH2O()));
             o2.setText(String.valueOf(gasParam.getO2()));
-            other.setText(String.valueOf(gasParam.getOther()));
-            System.out.println("=1; " + (1 - gasSummator));
+            other.setText(String.valueOf(gasParam.getOther() * 100));
+            System.out.println("=1; " + (gasParam.getOther() * 100));
         }
     }
 

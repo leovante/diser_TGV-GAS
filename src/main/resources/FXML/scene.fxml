@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -47,37 +48,116 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="440.0">
                             <children>
                                 <Label layoutX="30.0" layoutY="5.0" text="Концентрации" />
-                                <TextField fx:id="ch4" layoutX="79.0" layoutY="82.0" onAction="#ch4Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
+                                <TextField fx:id="ch4" layoutX="68.0" layoutY="80.0" onAction="#ch4Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
                                 <Label layoutX="29.0" layoutY="255.0" text="Параметры газа" />
-                                <TextField layoutX="81.0" layoutY="285.0" prefHeight="25.0" prefWidth="102.0" promptText="кДж/м³" />
-                                <TextField layoutX="81.0" layoutY="327.0" prefHeight="25.0" prefWidth="102.0" promptText="кДж/м³" />
-                                <TextField layoutX="81.0" layoutY="371.0" prefHeight="25.0" prefWidth="102.0" />
-                                <TextField layoutX="81.0" layoutY="408.0" prefHeight="25.0" prefWidth="102.0" />
-                                <TextField layoutX="283.0" layoutY="285.0" prefHeight="25.0" prefWidth="102.0" promptText="Вт" />
-                                <TextField fx:id="density" layoutX="283.0" layoutY="327.0" prefHeight="25.0" prefWidth="102.0" promptText="кг/м³" />
-                                <TextField layoutX="283.0" layoutY="371.0" prefHeight="25.0" prefWidth="102.0" promptText="г/м³" />
-                                <TextField layoutX="283.0" layoutY="408.0" prefHeight="25.0" prefWidth="102.0" promptText="г/м³" />
-                                <Label layoutX="51.0" layoutY="86.0" text="CH₄" />
-                                <Label layoutX="51.0" layoutY="128.0" text="C₂H₆" />
-                                <Label layoutX="49.0" layoutY="172.0" text="C₃H₈" />
-                                <Label layoutX="47.0" layoutY="209.0" text="C₄H₁₀" />
-                                <Label layoutX="138.0" layoutY="86.0" text="C₅H₁₂" />
-                                <Label layoutX="153.0" layoutY="128.0" text="N₂" />
-                                <Label layoutX="145.0" layoutY="172.0" text="CO₂" />
-                                <Label layoutX="147.0" layoutY="209.0" text="CO" />
-                                <TextField fx:id="c2h6" layoutX="78.0" layoutY="124.0" onAction="#c2h6Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="c3h8" layoutX="78.0" layoutY="168.0" onAction="#c3h8Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="c4h10" layoutX="78.0" layoutY="205.0" onAction="#c4h10Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="c5h12" layoutX="175.0" layoutY="82.0" onAction="#c5h12Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="n2" layoutX="174.0" layoutY="124.0" onAction="#n2Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="co2" layoutX="174.0" layoutY="168.0" onAction="#co2Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="co" layoutX="174.0" layoutY="205.0" onAction="#coBtn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <Label layoutX="234.0" layoutY="86.0" text="H₂S" />
-                                <Label layoutX="238.0" layoutY="128.0" text="H₂" />
-                                <TextField fx:id="h2s" layoutX="261.0" layoutY="82.0" onAction="#h2sBtn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <TextField fx:id="h2" layoutX="260.0" layoutY="124.0" onAction="#h2Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                                <Label layoutX="53.0" layoutY="289.0" text="Qнс" />
-                                <Label layoutX="257.0" layoutY="331.0" text="ρст." />
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="30.0" layoutY="298.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" promptText="кДж/м³" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="30.0" layoutY="348.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" promptText="кДж/м³" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Blend />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="30.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="30.0" layoutY="448.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="230.0" layoutY="298.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" promptText="Вт" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField fx:id="density" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="230.0" layoutY="348.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" promptText="кг/м³" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="230.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" promptText="г/м³" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <TextField cacheShape="false" centerShape="false" focusTraversable="false" layoutX="230.0" layoutY="448.0" mouseTransparent="true" prefHeight="25.0" prefWidth="180.0" promptText="г/м³" scaleShape="false">
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#f7f892" />
+                                 </light>
+                              </Lighting>
+                           </effect></TextField>
+                                <Label layoutX="40.0" layoutY="86.0" text="CH₄" />
+                                <Label layoutX="40.0" layoutY="128.0" text="C₂H₆" />
+                                <Label layoutX="38.0" layoutY="172.0" text="C₃H₈" />
+                                <Label layoutX="36.0" layoutY="209.0" text="C₄H₁₀" />
+                                <Label layoutX="127.0" layoutY="86.0" text="C₅H₁₂" />
+                                <Label layoutX="142.0" layoutY="128.0" text="N₂" />
+                                <Label layoutX="134.0" layoutY="172.0" text="CO₂" />
+                                <Label layoutX="136.0" layoutY="209.0" text="CO" />
+                                <TextField fx:id="c2h6" layoutX="67.0" layoutY="120.0" onAction="#c2h6Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="c3h8" layoutX="67.0" layoutY="160.0" onAction="#c3h8Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="c4h10" layoutX="67.0" layoutY="200.0" onAction="#c4h10Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="c5h12" layoutX="164.0" layoutY="80.0" onAction="#c5h12Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="n2" layoutX="163.0" layoutY="120.0" onAction="#n2Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="co2" layoutX="163.0" layoutY="160.0" onAction="#co2Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="co" layoutX="163.0" layoutY="200.0" onAction="#coBtn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <Label layoutX="223.0" layoutY="86.0" text="H₂S" />
+                                <Label layoutX="227.0" layoutY="128.0" text="H₂" />
+                                <TextField fx:id="h2s" layoutX="250.0" layoutY="80.0" onAction="#h2sBtn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <TextField fx:id="h2" layoutX="249.0" layoutY="120.0" onAction="#h2Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                                <Label layoutX="30.0" layoutY="280.0" text="Низшая тепл. сгорания" />
                                 <Separator layoutX="115.0" layoutY="15.0" prefWidth="310.0" />
                                 <Separator layoutX="15.0" layoutY="15.0" orientation="VERTICAL" prefHeight="225.0" />
                                 <Separator layoutX="15.0" layoutY="15.0" prefWidth="10.0" />
@@ -91,23 +171,24 @@
                                     </items>
                                 </MenuButton>
                                 <Label layoutX="184.0" layoutY="22.0" text="Тип газа" />
-                        <Label layoutX="234.0" layoutY="172.0" text="H₂O" />
-                        <TextField fx:id="h2o" layoutX="260.0" layoutY="167.0" onAction="#h2oBtn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                        <Label layoutX="239.0" layoutY="209.0" text="O₂" />
-                        <TextField fx:id="o2" layoutX="260.0" layoutY="204.0" onAction="#o2Btn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                        <Label layoutX="265.0" layoutY="289.0" text="W" />
-                        <Label layoutX="27.0" layoutY="375.0" text="вязкость" />
-                        <Label layoutX="27.0" layoutY="412.0" text="Воббе" />
-                        <Label layoutX="54.0" layoutY="331.0" text="Qвс" />
+                        <Label layoutX="223.0" layoutY="172.0" text="H₂O" />
+                        <TextField fx:id="h2o" layoutX="249.0" layoutY="160.0" onAction="#h2oBtn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                        <Label layoutX="228.0" layoutY="209.0" text="O₂" />
+                        <TextField fx:id="o2" layoutX="249.0" layoutY="200.0" onAction="#o2Btn" prefHeight="25.0" prefWidth="55.0" promptText="\%" />
+                        <Label layoutX="30.0" layoutY="378.0" text="Динамическая вязкость" />
+                        <Label layoutX="30.0" layoutY="429.0" text="Число Воббе" />
+                        <Label layoutX="30.0" layoutY="330.0" text="Высшая тепл. сгорания" />
                         <Separator layoutX="124.0" layoutY="265.0" prefWidth="300.0" />
                         <Separator layoutX="421.0" layoutY="265.0" orientation="VERTICAL" prefHeight="255.0" />
                         <Separator layoutX="14.0" layoutY="520.0" prefWidth="409.0" />
                         <Separator layoutX="14.0" layoutY="265.0" orientation="VERTICAL" prefHeight="255.0" />
                         <Separator layoutX="14.0" layoutY="265.0" prefWidth="10.0" />
-                        <Label layoutX="315.0" layoutY="86.0" text="другое" />
-                        <TextField fx:id="other" editable="false" layoutX="356.0" layoutY="82.0" onAction="#otherBtn" prefHeight="25.0" prefWidth="48.0" promptText="\%" />
-                        <Label layoutX="258.0" layoutY="378.0" text="массовая концентрация сероводорода" />
-                        <Label layoutX="217.0" layoutY="411.0" text="массовая концентрация мех. при" />
+                        <Label layoutX="310.0" layoutY="86.0" text="другое" />
+                        <TextField fx:id="other" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="351.0" layoutY="80.0" mouseTransparent="true" onAction="#otherBtn" prefHeight="25.0" prefWidth="55.0" promptText="\%" scaleShape="false" />
+                        <Label layoutX="230.0" layoutY="379.0" text="Массовая конц. сероводорода" />
+                        <Label layoutX="230.0" layoutY="429.0" text="Массовая конц. мех. примесей" />
+                        <Label layoutX="230.0" layoutY="280.0" text="Количество тепла в час" />
+                        <Label layoutX="230.0" layoutY="328.0" text="Плотность при станд. усл." />
                             </children>
                         </AnchorPane>
                     </content>
@@ -133,12 +214,12 @@
                                     </items>
                                 </MenuButton>
 
-                                <Label layoutX="50.0" layoutY="70.0" prefHeight="9.0" prefWidth="113.0" text="Допустимые потери" />
-                                <Label fx:id="pressOnSystemLabel" layoutX="50.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="давления в сети (даПа)" />
-                                <Label layoutX="240.0" layoutY="70.0" prefHeight="17.0" prefWidth="163.0" text="Усредненное давление  газа," />
-                                <Label layoutX="240.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="абсолютное в сети (МПа)" />
-                                <TextField fx:id="getdPa" layoutX="50.0" layoutY="105.0" prefWidth="160.0" text="180" />
-                                <TextField fx:id="setSredPressure1" depthTest="DISABLE" layoutX="240.0" layoutY="105.0" prefWidth="160.0" text="-">
+                                <Label layoutX="30.0" layoutY="70.0" prefHeight="9.0" prefWidth="113.0" text="Допустимые потери" />
+                                <Label fx:id="pressOnSystemLabel" layoutX="30.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="давления в сети (даПа)" />
+                                <Label layoutX="230.0" layoutY="70.0" prefHeight="17.0" prefWidth="163.0" text="Усредненное давление  газа," />
+                                <Label layoutX="230.0" layoutY="85.0" prefHeight="17.0" prefWidth="147.0" text="абсолютное в сети (МПа)" />
+                                <TextField fx:id="getdPa" layoutX="30.0" layoutY="105.0" prefWidth="180.0" text="180" />
+                                <TextField fx:id="setSredPressure1" depthTest="DISABLE" layoutX="230.0" layoutY="105.0" prefWidth="180.0" text="-">
                                     <effect>
                                         <Lighting diffuseConstant="1.95" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -150,25 +231,25 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label layoutX="50.0" layoutY="130.0" prefHeight="9.0" prefWidth="113.0" text="Расход газа при" />
-                                <Label layoutX="50.0" layoutY="145.0" prefHeight="17.0" prefWidth="147.0" text="нормальных условиях" />
-                                <Label layoutX="50.0" layoutY="160.0" prefHeight="17.0" prefWidth="147.0" text="(нм³/час)" />
-                                <TextField fx:id="getRashod1" layoutX="50.0" layoutY="180.0" prefWidth="160.0" text="1144" />
+                                <Label layoutX="30.0" layoutY="130.0" prefHeight="9.0" prefWidth="113.0" text="Расход газа при" />
+                                <Label layoutX="30.0" layoutY="145.0" prefHeight="17.0" prefWidth="147.0" text="нормальных условиях" />
+                                <Label layoutX="30.0" layoutY="160.0" prefHeight="17.0" prefWidth="147.0" text="(нм³/час)" />
+                                <TextField fx:id="getRashod1" layoutX="30.0" layoutY="180.0" prefWidth="180.0" text="1144" />
 
-                                <Label layoutX="240.0" layoutY="160.0" prefHeight="17.0" prefWidth="155.0" text="Материал газопровода" />
-                                <MenuButton fx:id="pipeMaterial" focusTraversable="false" layoutX="240.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Выберите материал">
+                                <Label layoutX="230.0" layoutY="160.0" prefHeight="17.0" prefWidth="155.0" text="Материал газопровода" />
+                                <MenuButton fx:id="pipeMaterial" focusTraversable="false" layoutX="230.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Выберите материал">
                                     <items>
                                         <MenuItem mnemonicParsing="false" onAction="#steelPipeBtn" text="Сталь" />
                                         <MenuItem mnemonicParsing="false" onAction="#polyethilenePipeBtn" text="Полиэтилен" />
                                     </items>
                                 </MenuButton>
 
-                                <Label layoutX="50.0" layoutY="225.0" prefHeight="17.0" prefWidth="146.0" text="Длина газопровода (м)" />
-                                <TextField fx:id="getGasl" layoutX="50.0" layoutY="245.0" prefWidth="160.0" text="41" />
+                                <Label layoutX="30.0" layoutY="225.0" prefHeight="17.0" prefWidth="146.0" text="Длина газопровода (м)" />
+                                <TextField fx:id="getGasl" layoutX="30.0" layoutY="245.0" prefWidth="180.0" text="41" />
 
-                                <Label layoutX="240.0" layoutY="210.0" prefHeight="9.0" prefWidth="113.0" text="Плотность газа в" />
-                                <Label layoutX="240.0" layoutY="225.0" prefHeight="17.0" prefWidth="165.0" text="стандартных условиях (кг/м³)" />
-                                <TextField fx:id="getDensity" layoutX="240.0" layoutY="245.0" prefWidth="160.0" text="0.72" />
+                                <Label layoutX="230.0" layoutY="210.0" prefHeight="9.0" prefWidth="113.0" text="Плотность газа в" />
+                                <Label layoutX="230.0" layoutY="225.0" prefHeight="17.0" prefWidth="165.0" text="стандартных условиях (кг/м³)" />
+                                <TextField fx:id="getDensity" layoutX="230.0" layoutY="245.0" prefWidth="180.0" text="0.72" />
 
                                 <Button layoutX="15.0" layoutY="305.0" mnemonicParsing="false" onAction="#calculateBtn1" prefWidth="160.0" text="Рассчитать">
                                     <effect>
@@ -192,9 +273,9 @@
                                 <Separator layoutX="15.0" layoutY="350.0" orientation="VERTICAL" prefHeight="185.0" />
                                 <Separator layoutX="16.0" layoutY="535.0" prefHeight="0.0" prefWidth="420.0" />
 
-                                <Label layoutX="50.0" layoutY="360.0" prefHeight="9.0" prefWidth="160.0" text="Расчетный диаметр (мм)" />
-                                <Label layoutX="240.0" layoutY="360.0" prefHeight="17.0" prefWidth="160.0" text="Скорость газа (м/сек)" />
-                                <TextField fx:id="setRDiamGas" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="50.0" layoutY="380.0" mouseTransparent="true" prefWidth="160.0" promptText="0" scaleShape="false">
+                                <Label layoutX="30.0" layoutY="360.0" prefHeight="9.0" prefWidth="160.0" text="Расчетный диаметр (мм)" />
+                                <Label layoutX="230.0" layoutY="360.0" prefHeight="17.0" prefWidth="160.0" text="Скорость газа (м/сек)" />
+                                <TextField fx:id="setRDiamGas" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="30.0" layoutY="380.0" mouseTransparent="true" prefWidth="180.0" promptText="0" scaleShape="false">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -206,7 +287,7 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <TextField fx:id="setSpeed1" layoutX="240.0" layoutY="380.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <TextField fx:id="setSpeed1" layoutX="230.0" layoutY="380.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -218,9 +299,9 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label layoutX="50.0" layoutY="410.0" prefHeight="9.0" prefWidth="160.0" text="Стандарт. диаметр (мм)" />
-                                <Label layoutX="240.0" layoutY="410.0" prefHeight="17.0" prefWidth="160.0" text="Число Рейнольдса" />
-                                <TextField fx:id="setStdiam" layoutX="50.0" layoutY="430.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <Label layoutX="30.0" layoutY="410.0" prefHeight="9.0" prefWidth="160.0" text="Стандарт. диаметр (мм)" />
+                                <Label layoutX="230.0" layoutY="410.0" prefHeight="17.0" prefWidth="160.0" text="Число Рейнольдса" />
+                                <TextField fx:id="setStdiam" layoutX="30.0" layoutY="430.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -232,7 +313,7 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <TextField fx:id="setRe1" layoutX="240.0" layoutY="430.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <TextField fx:id="setRe1" layoutX="230.0" layoutY="430.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -244,10 +325,10 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label fx:id="paUdLabel" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
-                                <Label layoutX="240.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
-                                <Label fx:id="dPaLenghtLabel" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
-                                <TextField fx:id="setdPaUdel" layoutX="50.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <Label fx:id="paUdLabel" layoutX="30.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
+                                <Label layoutX="230.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
+                                <Label fx:id="dPaLenghtLabel" layoutX="230.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
+                                <TextField fx:id="setdPaUdel" layoutX="30.0" layoutY="495.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -259,7 +340,7 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <TextField fx:id="setdPaRaschLenght1" layoutX="240.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <TextField fx:id="setdPaRaschLenght1" layoutX="230.0" layoutY="495.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -287,9 +368,9 @@
                                 <Separator layoutX="15.0" layoutY="15.0" prefHeight="0.0" prefWidth="7.0" />
                                 <Separator layoutX="15.0" layoutY="15.0" orientation="VERTICAL" prefHeight="270.0" />
                                 <Separator layoutX="16.0" layoutY="285.0" prefHeight="0.0" prefWidth="420.0" />
-                                <Label layoutX="50.0" layoutY="25.0" prefHeight="9.0" prefWidth="160.0" text="Усредненное давление газа," />
-                                <Label layoutX="50.0" layoutY="40.0" prefHeight="17.0" prefWidth="160.0" text="абсолютное в сети (МПа)" />
-                                <TextField fx:id="setSredPressure2" depthTest="DISABLE" layoutX="50.0" layoutY="60.0" prefWidth="160.0" text="-">
+                                <Label layoutX="30.0" layoutY="25.0" prefHeight="9.0" prefWidth="160.0" text="Усредненное давление газа," />
+                                <Label layoutX="30.0" layoutY="40.0" prefHeight="17.0" prefWidth="160.0" text="абсолютное в сети (МПа)" />
+                                <TextField fx:id="setSredPressure2" depthTest="DISABLE" layoutX="30.0" layoutY="60.0" prefWidth="180.0" text="-">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -301,12 +382,12 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label layoutX="50.0" layoutY="90.0" prefHeight="9.0" prefWidth="160.0" text="Диаметр газопровода (мм)" />
-                                <TextField fx:id="setDiamGas2" layoutX="50.0" layoutY="110.0" prefWidth="160.0" text="0" />
-                                <Label layoutX="240.0" layoutY="60.0" prefHeight="17.0" prefWidth="160.0" text="Расход газа при" />
-                                <Label layoutX="240.0" layoutY="75.0" prefHeight="17.0" prefWidth="160.0" text="нормальных условиях" />
-                                <Label layoutX="240.0" layoutY="90.0" prefHeight="17.0" prefWidth="160.0" text="(нм³/час)" />
-                                <TextField fx:id="getRashod2" layoutX="240.0" layoutY="110.0" prefWidth="160.0" text="1144" />
+                                <Label layoutX="30.0" layoutY="90.0" prefHeight="9.0" prefWidth="160.0" text="Диаметр газопровода (мм)" />
+                                <TextField fx:id="setDiamGas2" layoutX="30.0" layoutY="110.0" prefWidth="180.0" text="0" />
+                                <Label layoutX="230.0" layoutY="60.0" prefHeight="17.0" prefWidth="160.0" text="Расход газа при" />
+                                <Label layoutX="230.0" layoutY="75.0" prefHeight="17.0" prefWidth="160.0" text="нормальных условиях" />
+                                <Label layoutX="230.0" layoutY="90.0" prefHeight="17.0" prefWidth="160.0" text="(нм³/час)" />
+                                <TextField fx:id="getRashod2" layoutX="230.0" layoutY="110.0" prefWidth="180.0" text="1144" />
 
                                 <Button layoutX="15.0" layoutY="305.0" mnemonicParsing="false" onAction="#calculateBtn2" prefWidth="160.0" text="Рассчитать">
                                     <effect>
@@ -330,9 +411,9 @@
                                 <Separator layoutX="15.0" layoutY="350.0" orientation="VERTICAL" prefHeight="185.0" />
                                 <Separator layoutX="16.0" layoutY="535.0" prefHeight="0.0" prefWidth="420.0" />
 
-                                <Label layoutX="240.0" layoutY="360.0" prefHeight="17.0" prefWidth="160.0" text="Скорость газа (м/сек)" />
-                                <Label layoutX="240.0" layoutY="410.0" prefHeight="17.0" prefWidth="160.0" text="Число Рейнольдса" />
-                                <TextField fx:id="setSpeed2" layoutX="240.0" layoutY="380.0" mouseTransparent="true" prefWidth="160.0" promptText="0" scaleShape="false">
+                                <Label layoutX="230.0" layoutY="360.0" prefHeight="17.0" prefWidth="160.0" text="Скорость газа (м/сек)" />
+                                <Label layoutX="230.0" layoutY="410.0" prefHeight="17.0" prefWidth="160.0" text="Число Рейнольдса" />
+                                <TextField fx:id="setSpeed2" layoutX="230.0" layoutY="380.0" mouseTransparent="true" prefWidth="180.0" promptText="0" scaleShape="false">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -344,7 +425,7 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <TextField fx:id="setRe2" layoutX="240.0" layoutY="430.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <TextField fx:id="setRe2" layoutX="230.0" layoutY="430.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -356,10 +437,10 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <Label fx:id="paUd2Label" layoutX="50.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
-                                <Label layoutX="240.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
-                                <Label fx:id="dPaLenght2Label" layoutX="240.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
-                                <TextField fx:id="setdPaUde2" layoutX="50.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <Label fx:id="paUd2Label" layoutX="30.0" layoutY="475.0" prefHeight="9.0" prefWidth="160.0" text="Удельные потери (Па/м)" />
+                                <Label layoutX="230.0" layoutY="460.0" prefHeight="17.0" prefWidth="160.0" text="Падение давления на расч." />
+                                <Label fx:id="dPaLenght2Label" layoutX="230.0" layoutY="475.0" prefHeight="17.0" prefWidth="160.0" text="длине газ-да (Па)" />
+                                <TextField fx:id="setdPaUde2" layoutX="30.0" layoutY="495.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
@@ -371,7 +452,7 @@
                                         </Lighting>
                                     </effect>
                                 </TextField>
-                                <TextField fx:id="setdPaRaschLenght2" layoutX="240.0" layoutY="495.0" mouseTransparent="true" prefWidth="160.0" promptText="0">
+                                <TextField fx:id="setdPaRaschLenght2" layoutX="230.0" layoutY="495.0" mouseTransparent="true" prefWidth="180.0" promptText="0">
                                     <effect>
                                         <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
                                             <bumpInput>
