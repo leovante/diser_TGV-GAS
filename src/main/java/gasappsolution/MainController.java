@@ -166,7 +166,6 @@ public class MainController {
         calculateParamPage();
     }
 
-
     @FXML
     void ch4Btn() {
         gasParam.setCH4(Double.parseDouble(ch4.getText()));
