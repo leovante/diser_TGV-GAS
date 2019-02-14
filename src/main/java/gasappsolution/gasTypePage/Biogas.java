@@ -1,9 +1,9 @@
-package gasappsolution.paramPage;
+package gasappsolution.gasTypePage;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static gasappsolution.paramPage.GasComponents.*;
+import static gasappsolution.gasTypePage.GasComponents.*;
 
 public class Biogas implements Gas {
     double vv = 14.3 * 0.000001; //коэффициент кинематической вязкости
@@ -39,6 +39,7 @@ public class Biogas implements Gas {
         comp.put(H2, 1.0);
         comp.put(H2O, 0.0);
         comp.put(O2, 0.0);
+        comp.put(other, 0.0);
         return comp;
     }
 }

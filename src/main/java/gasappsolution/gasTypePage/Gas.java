@@ -1,4 +1,4 @@
-package gasappsolution.paramPage;
+package gasappsolution.gasTypePage;
 
 import java.util.Map;
 

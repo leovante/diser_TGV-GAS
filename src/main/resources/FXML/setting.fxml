@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gasappsolution.MainController"
-            prefHeight="600.0" prefWidth="440.0">
 
+<AnchorPane prefHeight="600.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gasappsolution.MainController">
+   <children>
+      <TextArea layoutX="14.0" layoutY="61.0" prefHeight="198.0" prefWidth="420.0" text="Параметры сетвого природного газа взяты на основании &#10;Паспорта № ГГП-5-01-2019 качества газа горючего &#10;природного за январь 2019. ПАО &quot;Газпром&quot; &#10;ООО &quot;Газпром трансгаз Москва&quot; Московское ЛПУМГ.&#10;Отбор проб газа ГРП Романтика&#10;" />
+   </children>
 </AnchorPane>

@@ -1,4 +1,4 @@
-package gasappsolution.paramPage;
+package gasappsolution.gasTypePage;
 
 public enum GasComponents {
      CH4,
@@ -12,5 +12,6 @@ public enum GasComponents {
      H2S,
      H2,
      H2O,
-     O2
+     O2,
+     other
 }

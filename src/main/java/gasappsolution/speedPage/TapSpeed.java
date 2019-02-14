@@ -5,8 +5,8 @@ import gasappsolution.utilities.UserData;
 import gasappsolution.hydraulicPage.Pressure.Pressure;
 import gasappsolution.hydraulicPage.TapHydraulic;
 import gasappsolution.hydraulicPage.Tube.Tube;
-import gasappsolution.paramPage.Gas;
-import gasappsolution.paramPage.GasParam;
+import gasappsolution.gasTypePage.Gas;
+import gasappsolution.gasTypePage.GasParam;
 
 import javax.swing.*;
 import java.awt.*;
