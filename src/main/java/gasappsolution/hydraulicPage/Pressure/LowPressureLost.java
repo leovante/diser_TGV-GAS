@@ -1,20 +1,16 @@
 package gasappsolution.hydraulicPage.Pressure;
 
 public class LowPressureLost implements Pressure {
-    LowPressureLost lowPressureLost;
     double Pr = 0.101325 + 0.001 * 5;
-    double sPr = 0;
-    double Acons = 626;
-    double dPa = 180;
+    double Pm;
+    final double Acons = 626;
+    double daPa = 180;
+
+    LowPressureLost lowPressureLost;
 
     @Override
     public LowPressureLost param() {
         return lowPressureLost;
-    }
-
-    @Override
-    public double getPaUd(double dPa, double Length) {
-        return dPa * 10 / (Length * 1.1);
     }
 
     @Override
@@ -23,12 +19,17 @@ public class LowPressureLost implements Pressure {
     }
 
     @Override
-    public double getdPa() {
-        return dPa;
+    public double getDaPa() {
+        return daPa;
     }
 
     @Override
-    public double getsPr() {
-        return sPr;
+    public double getPm() {
+        return Pm;
+    }
+
+    @Override
+    public double getAconst() {
+        return Acons;
     }
 }

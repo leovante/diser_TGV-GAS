@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class PolyethyleneTube implements Tube {
     double n = 0.0007;
-    double m1const = 4.75;
     double mconst = 1.75;
+    double m1const = 4.75;
     double Bconst = 0.0446;
 
     @Override
@@ -15,22 +15,22 @@ public class PolyethyleneTube implements Tube {
 
     @Override
     public double getN() {
-        return 0;
+        return n;
     }
 
     @Override
     public double getM1const() {
-        return 0;
+        return m1const;
     }
 
     @Override
     public double getMconst() {
-        return 0;
+        return mconst;
     }
 
     @Override
     public double getBconst() {
-        return 0;
+        return Bconst;
     }
 
     @Override
@@ -67,6 +67,6 @@ public class PolyethyleneTube implements Tube {
         } else {
             Ds = diamList.get(diamList.size() - 1);
         }
-        return Ds = Ds;
+        return Ds;
     }
 }

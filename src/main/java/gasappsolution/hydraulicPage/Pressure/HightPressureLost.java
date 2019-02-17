@@ -5,20 +5,17 @@
 package gasappsolution.hydraulicPage.Pressure;
 
 public class HightPressureLost implements Pressure {
-    HightPressureLost hightPressureLost;
     double Pr = 0.101325 + 0.3;
-    double sPr = 0.325;
-    double Aconst = 0.101325 / (sPr * 162 * Math.PI * Math.PI);
+    double Pm = 0.325; //усредненное давление газа (абсолютное в сети)
+    double P0 = 0.101325;
+    double Aconst = P0 / (Pm * 162 * Math.PI * Math.PI);
     double dPa = 0.18;
+
+    HightPressureLost hightPressureLost;
 
     @Override
     public HightPressureLost param() {
         return hightPressureLost;
-    }
-
-    @Override
-    public double getPaUd(double dPa, double Length) {
-        return dPa * 10 / (Length * 1.1);
     }
 
     @Override
@@ -27,12 +24,17 @@ public class HightPressureLost implements Pressure {
     }
 
     @Override
-    public double getdPa() {
+    public double getDaPa() {
         return dPa;
     }
 
     @Override
-    public double getsPr() {
-        return sPr;
+    public double getPm() {
+        return Pm;
+    }
+
+    @Override
+    public double getAconst() {
+        return Aconst;
     }
 }

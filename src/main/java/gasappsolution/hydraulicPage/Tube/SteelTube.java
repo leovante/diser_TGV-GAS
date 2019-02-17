@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class SteelTube implements Tube {
     double n = 0.01;
-    double m1const = 5;
     double mconst = 2;
+    double m1const = 5;
     double Bconst = 0.022;
 
     @Override

@@ -26,12 +26,12 @@ public class TapHydraulic implements SnipConstants {
     private Tube tube;
     private UserData userData;
 
-    double Re;
+    double PaUd;
     double Dr;
     double Ds;
-    double PaUd;
-    double PnPk;
+    double Re;
     double V;
+    double PnPk;
 
     public TapHydraulic(Gas gas, GasParam gasParam, Pressure pressure, Tube tube, UserData userData) {
         this.gas = gas;
@@ -50,7 +50,7 @@ public class TapHydraulic implements SnipConstants {
     // Удельные потери давления
     public void PaUd() {
         try {
-            this.PaUd = pressure.getPaUd(userData.getdPa(), userData.getLength());
+            this.PaUd = userData.getdPa() * 10 / (userData.getLength() * 1.1);
         } catch (NullPointerException e) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
@@ -64,7 +64,9 @@ public class TapHydraulic implements SnipConstants {
     // Диаметр расчетный
     public void Dr() {
         try {
-            this.Dr = Math.pow((Aconst * Bconst * gas.getDensity() * Math.pow(userData.getRashod1(), mconst)) / PaUd, 1 / m1const) * 10;
+            this.Dr = Math.pow((pressure.getAconst() * tube.getBconst() * gas.getDensity()
+                    * Math.pow(userData.getRashod1(), tube.getMconst()))
+                    / PaUd, 1 / tube.getM1const()) * 10;
         } catch (NullPointerException e) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
@@ -106,7 +108,7 @@ public class TapHydraulic implements SnipConstants {
         }
         if (Re > 4000) {
             if (n / Ds < 23) {
-                if (Re > 4000 && Re < 100000) {
+                if (Re < 100000) {
                     lambda = 0.3164 / Math.pow(Re, 0.25);
                 }
                 if (Re > 100000) {
@@ -129,7 +131,7 @@ public class TapHydraulic implements SnipConstants {
         this.PnPk = pressure.getPressureLost(
                 getlambda()
                 , userData.getRashod1()
-                , userData.getDensity()
+                , gas.getDensity()
                 , userData.getLength()
                 , Ds);
     }

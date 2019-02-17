@@ -90,7 +90,7 @@ public class TapSpeed implements SnipConstants {
             this.PnPk = pressure.getPressureLost(
                     getlambda()
                     , userData.getRashod1()
-                    , userData.getDensity()
+                    , gas.getDensity()
                     , userData.getLength()
                     , Ds);
         } catch (NullPointerException e) {

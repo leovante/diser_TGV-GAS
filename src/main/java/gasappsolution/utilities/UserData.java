@@ -4,7 +4,6 @@ public class UserData {
     double dPa;
     double Length;
     double Rashod1;
-    double Density;
     double Ds2;
     double Rashod2;
 
@@ -46,13 +45,5 @@ public class UserData {
 
     public void setRashod1(double rashod1) {
         Rashod1 = rashod1;
-    }
-
-    public double getDensity() {
-        return Density;
-    }
-
-    public void setDensity(double density) {
-        Density = density;
     }
 }
