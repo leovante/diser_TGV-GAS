@@ -124,14 +124,12 @@ public class MainController {
     private TextField setdPaUde2;
     @FXML
     private TextField setdPaRaschLenght2;
-    @FXML
-    private Button btnOK;
 
     @FXML
     void natureGasBtn() {
         gas = new FactoryGas().getGas(GasType.NatureGas);
         paramPage(gas.create());
-        gasTypeMenuBtn.setText("Природный газ");
+        gasTypeMenuBtn.setText("Свалочный газ");
     }
 
     @FXML
@@ -145,7 +143,7 @@ public class MainController {
     void networkBtn() {
         gas = new FactoryGas().getGas(GasType.NetworkGas);
         paramPage(gas.create());
-        gasTypeMenuBtn.setText("Сетевой природный газ");
+        gasTypeMenuBtn.setText("Сетевой газ");
     }
 
     void paramPage(Map gas) {
@@ -364,26 +362,35 @@ public class MainController {
 
     @FXML
     void settingBtn() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML/setting.fxml"));
-        Stage stageSetting = new Stage();
-        stageSetting.setTitle("Настройки");
-        stageSetting.setScene(new Scene(root));
-        stageSetting.show();
+        SettingController sc = new SettingController();
+        sc.settingBtn();
     }
 
     @FXML
     public void aboutBtn() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML/aboutProgram.fxml"));
-        Stage stageAbout = new Stage();
-        stageAbout.setTitle("О программе");
-        stageAbout.setScene(new Scene(root));
-        Image ico = new Image("iconLogo.png");
-        stageAbout.getIcons().add(ico);
-        stageAbout.show();
+        AboutController ac = new AboutController();
+        ac.aboutBtn();
     }
 
     @FXML
     void resetBtn() {
+        ch4.setText(null);
+        c2h6.setText(null);
+        c3h8.setText(null);
+        c4h10.setText(null);
+        c5h12.setText(null);
+        n2.setText(null);
+        co2.setText(null);
+        co.setText(null);
+        h2s.setText(null);
+        h2.setText(null);
+        h2o.setText(null);
+        o2.setText(null);
+        other.setText(null);
+
+
+
+
         lowPressureBtn();
         steelPipeBtn();
 
@@ -407,12 +414,6 @@ public class MainController {
         setdPaRaschLenght2.setText(null);
         setdPaUde2.setText(null);
         density.setText(null);
-    }
-
-    @FXML
-    void inquiryQuestionBtnOK() {
-        Stage stageAbout = (Stage) btnOK.getScene().getWindow();
-        stageAbout.close();
     }
 
     @FXML

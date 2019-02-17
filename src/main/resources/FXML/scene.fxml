@@ -165,9 +165,9 @@
                                 <Separator layoutX="422.0" layoutY="15.0" orientation="VERTICAL" prefHeight="225.0" />
                                 <MenuButton fx:id="gasTypeMenuBtn" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" prefWidth="350.0" text="Выберите газ">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#natureGasBtn" text="Природный газ" />
+                                        <MenuItem mnemonicParsing="false" onAction="#natureGasBtn" text="Свалочный газ" />
                                         <MenuItem mnemonicParsing="false" onAction="#biogasBtn" text="Биогаз" />
-                              <MenuItem mnemonicParsing="false" onAction="#networkBtn" text="Сетевой природный газ" />
+                              <MenuItem mnemonicParsing="false" onAction="#networkBtn" text="Сетевой газ" />
                                     </items>
                                 </MenuButton>
                                 <Label layoutX="184.0" layoutY="22.0" text="Тип газа" />
