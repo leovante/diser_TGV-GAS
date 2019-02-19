@@ -15,7 +15,7 @@ public class LowPressureLost implements Pressure {
 
     @Override
     public double getPressureLost(double lambda, double Rashod, double Density, double Length, double Ds2) {
-        return 626.1 * lambda * Rashod * Rashod * Density * Length * 1.1 / (Math.pow(Ds2, 5));
+        return 626.1 * lambda * Rashod * Rashod * Density * Length * 1.1 / (Math.pow(Ds2 / 10, 5));
     }
 
     @Override
