@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="600.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gasappsolution.SettingController">
+<AnchorPane prefHeight="600.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gasappsolution.SettingController">
    <children>
       <TextArea layoutX="14.0" layoutY="61.0" prefHeight="198.0" prefWidth="420.0" text="Параметры сетвого природного газа взяты на основании &#10;Паспорта № ГГП-5-01-2019 качества газа горючего &#10;природного за январь 2019. ПАО &quot;Газпром&quot; &#10;ООО &quot;Газпром трансгаз Москва&quot; Московское ЛПУМГ.&#10;Отбор проб газа ГРП Романтика&#10;" />
    </children>
