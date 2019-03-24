@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gasappsolution.SettingController">
    <children>
-      <TextArea layoutX="14.0" layoutY="61.0" prefHeight="198.0" prefWidth="420.0" text="Параметры сетвого природного газа взяты на основании &#10;Паспорта № ГГП-5-01-2019 качества газа горючего &#10;природного за январь 2019. ПАО &quot;Газпром&quot; &#10;ООО &quot;Газпром трансгаз Москва&quot; Московское ЛПУМГ.&#10;Отбор проб газа ГРП Романтика&#10;" />
+      <TextArea editable="false" layoutX="10.0" layoutY="380.0" mouseTransparent="true" prefHeight="198.0" prefWidth="420.0" text="Параметры сетвого природного газа взяты на основании &#10;Паспорта № ГГП-5-01-2019 качества газа горючего &#10;природного за январь 2019. ПАО &quot;Газпром&quot; &#10;ООО &quot;Газпром трансгаз Москва&quot; Московское ЛПУМГ.&#10;Отбор проб газа ГРП Романтика&#10;" />
+      <Label layoutX="16.0" layoutY="54.0" text="Температура наружнего воздуха" />
+      <TextField editable="false" layoutX="222.0" layoutY="50.0" mouseTransparent="true" promptText="С°" text="0" />
+      <Label layoutX="116.0" layoutY="22.0" text="Предварительные настройки расчета" />
+      <Label layoutX="114.0" layoutY="357.0" text="О предустановленных параметрах газа" />
+      <Label layoutX="16.0" layoutY="95.0" text="Давление" />
+      <TextField editable="false" layoutX="222.0" layoutY="91.0" mouseTransparent="true" promptText="МПа" text="0.1013" />
    </children>
 </AnchorPane>

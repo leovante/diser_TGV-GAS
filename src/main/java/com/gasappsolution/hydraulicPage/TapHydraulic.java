@@ -11,8 +11,8 @@ import com.gasappsolution.SnipConstants;
 import com.gasappsolution.utilities.UserData;
 import com.gasappsolution.hydraulicPage.Pressure.Pressure;
 import com.gasappsolution.hydraulicPage.Tube.Tube;
-import com.gasappsolution.gasTypePage.Gas;
-import com.gasappsolution.gasTypePage.GasParam;
+import com.gasappsolution.gasTypePage.gases.Gas;
+import com.gasappsolution.gasTypePage.ParamCalc;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,7 @@ import static java.lang.Math.log10;
 
 public class TapHydraulic implements SnipConstants {
     private Gas gas;
-    private GasParam gasParam;
+    private ParamCalc paramCalc;
     private Pressure pressure;
     private Tube tube;
     private UserData userData;
@@ -33,9 +33,9 @@ public class TapHydraulic implements SnipConstants {
     double V;
     double PnPk;
 
-    public TapHydraulic(Gas gas, GasParam gasParam, Pressure pressure, Tube tube, UserData userData) {
+    public TapHydraulic(Gas gas, ParamCalc paramCalc, Pressure pressure, Tube tube, UserData userData) {
         this.gas = gas;
-        this.gasParam = gasParam;
+        this.paramCalc = paramCalc;
         this.pressure = pressure;
         this.tube = tube;
         this.userData = userData;
@@ -64,9 +64,10 @@ public class TapHydraulic implements SnipConstants {
     // Диаметр расчетный
     public void Dr() {
         try {
-            this.Dr = Math.pow((pressure.getAconst() * tube.getBconst() * gas.getDensity()
+            this.Dr = Math.pow((pressure.getAconst() * tube.getBconst() * paramCalc.calcDensity()
                     * Math.pow(userData.getRashod1(), tube.getMconst()))
                     / PaUd, 1 / tube.getM1const()) * 10;
+            System.out.println();
         } catch (NullPointerException e) {
             Component frame = null;
             JOptionPane.showMessageDialog(frame,
@@ -131,7 +132,7 @@ public class TapHydraulic implements SnipConstants {
         this.PnPk = pressure.getPressureLost(
                 getlambda()
                 , userData.getRashod1()
-                , gas.getDensity()
+                , paramCalc.getDencity()
                 , userData.getLength()
                 , Ds);
     }

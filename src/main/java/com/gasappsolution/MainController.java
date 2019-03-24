@@ -7,10 +7,10 @@ import com.gasappsolution.hydraulicPage.TapHydraulic;
 import com.gasappsolution.hydraulicPage.Tube.FactoryTube;
 import com.gasappsolution.hydraulicPage.Tube.Tube;
 import com.gasappsolution.hydraulicPage.Tube.TubeType;
-import com.gasappsolution.gasTypePage.FactoryGas;
-import com.gasappsolution.gasTypePage.Gas;
-import com.gasappsolution.gasTypePage.GasType;
-import com.gasappsolution.gasTypePage.GasParam;
+import com.gasappsolution.gasTypePage.FactoryGasType;
+import com.gasappsolution.gasTypePage.gases.Gas;
+import com.gasappsolution.gasTypePage.EnumGasType;
+import com.gasappsolution.gasTypePage.ParamCalc;
 import com.gasappsolution.speedPage.TapSpeed;
 import com.gasappsolution.utilities.UserData;
 import com.gasappsolution.utilities.Utilities;
@@ -21,7 +21,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class MainController {
     Utilities util = new Utilities();
@@ -30,10 +29,9 @@ public class MainController {
     UserData userData = new UserData();
 
     private Gas gas;
-    private GasParam gasParam;
+    private ParamCalc paramCalc;
     private Pressure pressure;
     private Tube tube;
-    double gasSummator;
 
     // Первая вкладка
     @FXML
@@ -56,14 +54,20 @@ public class MainController {
     private TextField h2s;
     @FXML
     private TextField h2;
-    @FXML
-    private TextField h2o;
+//    @FXML
+//    private TextField h2o;
     @FXML
     private TextField o2;
     @FXML
     private TextField other;
     @FXML
     private TextField density;
+    @FXML
+    private TextField qntp;
+    @FXML
+    private TextField qvtp;
+    @FXML
+    private TextField vobbe;
     // Вторая вкладка
     @FXML
     private Label pressOnSystemLabel;
@@ -120,189 +124,135 @@ public class MainController {
     private TextField setdPaRaschLenght2;
 
     @FXML
-    void natureGasBtn() {
-        gas = new FactoryGas().getGas(GasType.NatureGas);
-        paramPage(gas.create());
+    void svalochniyGasBtn() {
+        gas = new FactoryGasType().getGas(EnumGasType.NatureGas);
+        setComponents();
         gasTypeMenuBtn.setText("Свалочный газ");
-    }
-
-    @FXML
-    void biogasBtn() {
-        gas = new FactoryGas().getGas(GasType.Biogas);
-        paramPage(gas.create());
-        gasTypeMenuBtn.setText("Биогаз");
-    }
-
-    @FXML
-    void networkBtn() {
-        gas = new FactoryGas().getGas(GasType.NetworkGas);
-        paramPage(gas.create());
-        gasTypeMenuBtn.setText("Сетевой газ");
-    }
-
-    void paramPage(Map gas) {
-        gasParam = new GasParam(gas);
-        ch4.setText(String.valueOf(gasParam.getCH4()));
-        c2h6.setText(String.valueOf(gasParam.getC2H6()));
-        c3h8.setText(String.valueOf(gasParam.getC3H8()));
-        c4h10.setText(String.valueOf(gasParam.getC4H10()));
-        c5h12.setText(String.valueOf(gasParam.getC5H12()));
-        n2.setText(String.valueOf(gasParam.getN2()));
-        co2.setText(String.valueOf(gasParam.getCO2()));
-        co.setText(String.valueOf(gasParam.getCO()));
-        h2s.setText(String.valueOf(gasParam.getH2S()));
-        h2.setText(String.valueOf(gasParam.getH2()));
-        h2o.setText(String.valueOf(gasParam.getH2O()));
-        o2.setText(String.valueOf(gasParam.getO2()));
-        other.setText(String.valueOf(gasParam.getOther()));
         calculateParamPage();
     }
 
     @FXML
+    void biogasBtn() {
+        gas = new FactoryGasType().getGas(EnumGasType.Biogas);
+        setComponents();
+        gasTypeMenuBtn.setText("Биогаз");
+        calculateParamPage();
+    }
+
+    @FXML
+    void networkBtn() {
+        gas = new FactoryGasType().getGas(EnumGasType.NetworkGas);
+        setComponents();
+        gasTypeMenuBtn.setText("Сетевой газ");
+        calculateParamPage();
+    }
+
+    //отображение цифр из класса
+    void setComponents() {
+        paramCalc = new ParamCalc(gas);
+        ch4.setText(util.toText(gas.getCH4()));
+        c2h6.setText(util.toText(gas.getC2H6()));
+        c3h8.setText(util.toText(gas.getC3H8()));
+        c4h10.setText(util.toText(gas.getC4H10()));
+        c5h12.setText(util.toText(gas.getC5H12()));
+        n2.setText(util.toText(gas.getN2()));
+        co2.setText(util.toText(gas.getCO2()));
+        co.setText(util.toText(gas.getCO()));
+        h2s.setText(util.toText(gas.getH2S()));
+        h2.setText(util.toText(gas.getH2()));
+//        h2o.setText(util.toText(gas.getH2O()));
+        o2.setText(util.toText(gas.getO2()));
+        other.setText(util.toText(gas.getOther()));
+    }
+
+    @FXML
     void ch4Btn() {
-        gasParam.setCH4(Double.parseDouble(ch4.getText()));
-        gasParamSummator();
+        paramCalc.setCH4(Double.parseDouble(ch4.getText()));
         calculateParamPage();
     }
 
     @FXML
     void c2h6Btn() {
-        gasParam.setC2H6(Double.parseDouble(c2h6.getText()));
-        gasParamSummator();
+        paramCalc.setC2H6(Double.parseDouble(c2h6.getText()));
         calculateParamPage();
     }
 
     @FXML
     void c3h8Btn() {
-        gasParam.setC3H8(Double.parseDouble(c3h8.getText()));
-        gasParamSummator();
+        paramCalc.setC3H8(Double.parseDouble(c3h8.getText()));
         calculateParamPage();
     }
 
     @FXML
     void c4h10Btn() {
-        gasParam.setC4H10(Double.parseDouble(c4h10.getText()));
-        gasParamSummator();
+        paramCalc.setC4H10(Double.parseDouble(c4h10.getText()));
         calculateParamPage();
     }
 
     @FXML
     void c5h12Btn() {
-        gasParam.setC5H12(Double.parseDouble(c5h12.getText()));
-        gasParamSummator();
+        paramCalc.setC5H12(Double.parseDouble(c5h12.getText()));
         calculateParamPage();
     }
 
     @FXML
     void n2Btn() {
-        gasParam.setN2(Double.parseDouble(n2.getText()));
-        gasParamSummator();
+        paramCalc.setN2(Double.parseDouble(n2.getText()));
         calculateParamPage();
     }
 
     @FXML
     void co2Btn() {
-        gasParam.setCO2(Double.parseDouble(co2.getText()));
-        gasParamSummator();
+        paramCalc.setCO2(Double.parseDouble(co2.getText()));
         calculateParamPage();
     }
 
     @FXML
     void coBtn() {
-        gasParam.setCO(Double.parseDouble(co.getText()));
-        gasParamSummator();
+        paramCalc.setCO(Double.parseDouble(co.getText()));
         calculateParamPage();
     }
 
     @FXML
     void h2sBtn() {
-        gasParam.setH2S(Double.parseDouble(h2s.getText()));
-        gasParamSummator();
+        paramCalc.setH2S(Double.parseDouble(h2s.getText()));
         calculateParamPage();
     }
 
     @FXML
     void h2Btn() {
-        gasParam.setH2(Double.parseDouble(h2.getText()));
-        gasParamSummator();
+        paramCalc.setH2(Double.parseDouble(h2.getText()));
         calculateParamPage();
     }
 
-    @FXML
-    void h2oBtn() {
-        gasParam.setH2O(Double.parseDouble(h2o.getText()));
-        gasParamSummator();
-        calculateParamPage();
-    }
+//    @FXML
+//    void h2oBtn() {
+//        paramCalc.setH2O(Double.parseDouble(h2o.getText()));
+//        calculateParamPage();
+//    }
 
     @FXML
     void o2Btn() {
-        gasParam.setO2(Double.parseDouble(o2.getText()));
-        gasParamSummator();
+        paramCalc.setO2(Double.parseDouble(o2.getText()));
         calculateParamPage();
     }
 
     @FXML
     void otherBtn() {
-        gasParam.setOther(Double.parseDouble(other.getText()));
-        gasParamSummator();
+        paramCalc.setOther(Double.parseDouble(other.getText()));
         calculateParamPage();
-
     }
 
-    void gasParamSummator() {
-        this.gasSummator =
-                gasParam.getCH4() / 100 +
-                        gasParam.getC2H6() / 100 +
-                        gasParam.getC3H8() / 100 +
-                        gasParam.getC4H10() / 100 +
-                        gasParam.getC5H12() / 100 +
-                        gasParam.getN2() / 100 +
-                        gasParam.getCO2() / 100 +
-                        gasParam.getCO() / 100 +
-                        gasParam.getH2S() / 100 +
-                        gasParam.getH2() / 100 +
-                        gasParam.getH2O() / 100 +
-                        gasParam.getO2() / 100;
-        if (this.gasSummator > 1) {
-            other.setStyle("-fx-text-inner-color: red;");
-            gasParam.setOther(1 - gasSummator);
-            other.setText(String.valueOf(gasParam.getOther() * 100));
-            System.out.println(">1; " + (gasParam.getOther() * 100));
-        } else if (this.gasSummator < 1) {
-            other.setStyle("-fx-text-inner-color: black;");
-            gasParam.setOther(1 - gasSummator);
-            other.setText(String.valueOf(gasParam.getOther() * 100));
-            System.out.println("<1; " + (gasParam.getOther() * 100));
-        } else if (this.gasSummator == 1) {
-            other.setStyle("-fx-text-inner-color: black;");
-            gasParam.setOther(1 - gasSummator);
-
-            ch4.setText(String.valueOf(gasParam.getCH4()));
-            c2h6.setText(String.valueOf(gasParam.getC2H6()));
-            c3h8.setText(String.valueOf(gasParam.getC3H8()));
-            c4h10.setText(String.valueOf(gasParam.getC4H10()));
-            c5h12.setText(String.valueOf(gasParam.getC5H12()));
-            n2.setText(String.valueOf(gasParam.getN2()));
-            co2.setText(String.valueOf(gasParam.getCO2()));
-            co.setText(String.valueOf(gasParam.getCO()));
-            h2s.setText(String.valueOf(gasParam.getH2S()));
-            h2.setText(String.valueOf(gasParam.getH2()));
-            h2o.setText(String.valueOf(gasParam.getH2O()));
-            o2.setText(String.valueOf(gasParam.getO2()));
-            other.setText(String.valueOf(gasParam.getOther() * 100));
-            System.out.println("=1; " + (gasParam.getOther() * 100));
-        }
-    }
-
+    //результаты расчета на первой вкладке
     void calculateParamPage() {
-        this.gas.setDensity(gasParam.calcDensity());
-        density.setText(util.toText(gas.getDensity()));
-        getDensity.setText(util.toText(gas.getDensity()));
-//        userData.setDensity(gas.getDensity());
+        density.setText(util.toText(paramCalc.getDencity()));
+        getDensity.setText(util.toText(paramCalc.getDencity()));
+        qntp.setText(util.toText(paramCalc.getQnc()));
+        qvtp.setText(util.toText(paramCalc.getQvc()));
+        vobbe.setText(util.toText(paramCalc.getWobbe()));
     }
 
-    /*ТУТ СТАРОЕ*/
+    //ТУТ СТАРОЕ
     @FXML
     void lowPressureBtn() {
         this.pressure = new FactoryPressure()
@@ -310,7 +260,6 @@ public class MainController {
         getdaPa.setText(util.toText(pressure.getDaPa()));
         setSredPressure1.setText(util.toText(pressure.getPm()));
         setSredPressure2.setText(util.toText(pressure.getPm()));
-
         pressureMenuButton.setText("Сеть низкого давления");
         pressOnSystemLabel.setText("давление в сети (даПа)");
         paUdLabel.setText("Удельные потери (Па/м)");
@@ -347,7 +296,7 @@ public class MainController {
     public void polyethilenePipeBtn() {
         pipeMaterial.setText("Полиэтилен");
         this.tube = new FactoryTube()
-                .getTube(TubeType.Steel)
+                .getTube(TubeType.Polyethylene)
                 .param();
     }
 
@@ -358,7 +307,7 @@ public class MainController {
         userData.setRashod1(Double.parseDouble(getRashod1.getText()));
 //        userData.setDensity(Double.parseDouble(getDensity.getText()));
 
-        tapHydraulic = new TapHydraulic(gas, gasParam, pressure, tube, userData);
+        tapHydraulic = new TapHydraulic(gas, paramCalc, pressure, tube, userData);
 
         setdPaUdel.setText(util.toText(tapHydraulic.getPaUd()));
         setRDiamGas.setText(util.toText(tapHydraulic.getDr()));
@@ -391,7 +340,7 @@ public class MainController {
 //        userData.setDensity(Double.parseDouble(getDensity.getText()));
         userData.setLength(Double.parseDouble(getGasl.getText()));
 
-        tapSpeed = new TapSpeed(gas, gasParam, pressure, tube, userData, tapHydraulic);
+        tapSpeed = new TapSpeed(gas, paramCalc, pressure, tube, userData, tapHydraulic);
 
         setSpeed2.setText(util.toText(tapSpeed.getV2()));
         setRe2.setText(util.toText(tapSpeed.getRe()));
@@ -443,7 +392,7 @@ public class MainController {
         co.setText(null);
         h2s.setText(null);
         h2.setText(null);
-        h2o.setText(null);
+//        h2o.setText(null);
         o2.setText(null);
         other.setText(null);
 
@@ -472,6 +421,4 @@ public class MainController {
         setdPaUde2.setText(null);
         density.setText(null);
     }
-
-
 }

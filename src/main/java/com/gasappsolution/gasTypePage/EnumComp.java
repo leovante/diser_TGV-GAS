@@ -1,6 +1,6 @@
 package com.gasappsolution.gasTypePage;
 
-public enum GasComponents {
+public enum EnumComp {
      CH4,
      C2H6,
      C3H8,

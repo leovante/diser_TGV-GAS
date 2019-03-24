@@ -1,5 +1,5 @@
 package com.gasappsolution.gasTypePage;
 
-public enum GasType {
+public enum EnumGasType {
     Biogas, NatureGas, NetworkGas
 }

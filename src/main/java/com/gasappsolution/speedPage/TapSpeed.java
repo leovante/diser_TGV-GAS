@@ -5,8 +5,8 @@ import com.gasappsolution.utilities.UserData;
 import com.gasappsolution.hydraulicPage.Pressure.Pressure;
 import com.gasappsolution.hydraulicPage.TapHydraulic;
 import com.gasappsolution.hydraulicPage.Tube.Tube;
-import com.gasappsolution.gasTypePage.Gas;
-import com.gasappsolution.gasTypePage.GasParam;
+import com.gasappsolution.gasTypePage.gases.Gas;
+import com.gasappsolution.gasTypePage.ParamCalc;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ import static java.lang.Math.log10;
 
 public class TapSpeed implements SnipConstants {
     private Gas gas;
-    private GasParam gasParam;
+    private ParamCalc paramCalc;
     private Pressure pressure;
     private Tube tube;
     private UserData userData;
@@ -28,13 +28,13 @@ public class TapSpeed implements SnipConstants {
     double PaUd;
 
     public TapSpeed(Gas gas
-            , GasParam gasParam
+            , ParamCalc paramCalc
             , Pressure pressure
             , Tube tube
             , UserData userData
             , TapHydraulic tapHydraulic) {
         this.gas = gas;
-        this.gasParam = gasParam;
+        this.paramCalc = paramCalc;
         this.pressure = pressure;
         this.tube = tube;
         this.userData = userData;
@@ -90,7 +90,7 @@ public class TapSpeed implements SnipConstants {
             this.PnPk = pressure.getPressureLost(
                     getlambda()
                     , userData.getRashod1()
-                    , gas.getDensity()
+                    , paramCalc.getDencity()
                     , userData.getLength()
                     , Ds);
         } catch (NullPointerException e) {
